@@ -99,3 +99,27 @@ body {
   text-align: center;
   font-weight: bold;
 }
+
+#spaceDiv {
+  height: 50px;
+}
+
+#studyItem {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+#studyContent {
+  display: flex;
+  justify-content: center;
+}
+
+#currentCard {
+  height: 300px;
+  width: 200px;
+  background-color: rgb(186, 226, 252);
+}
+
+#navButton {
+  margin: 100px 0px 100px 0px;
+}

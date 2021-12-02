@@ -11,11 +11,12 @@
     <!--Allows user to study the currently made deck-->
     <h1 id="study">ADD A inner.HTML here that changes this when a deck and card has been created</h1>
     <!--CREATES A NEW DECK-->
-    <h1>Create a New Deck Below:</h1>
-    <br>
+    <h1>Create a Deck Below:</h1>
     <input id="deckName" placeholder="Enter Deck Name:" type='text' />
-    <button id="newDeck">New Deck</button>
-    <p>Click on newly created deck to add cards</p>
+    <button id="newDeck">Create Deck</button>
+    <h2 id='deckDisplay'>Your Deck:</h2>
+    <p id="displayDecks">You havent created a deck yet!</p>
+    <div id='spaceDiv'></div>
 
     <!--CREATES A NEW CARD-->
     <h1>Create a New Card Below: </h1>
@@ -23,10 +24,17 @@
     <input id="frontText" placeholder="Enter Front Card Text:">
     <input id="backText" placeholder="Enter Back Card Text:">
     <button id="newCardButton">Add Back & Front Text</button>
-    <h2 id='currentDisplay'>Decks:</h2>
-    <p id="display"></p>
+    <h2 id='cardDisplay'>Cards:</h2>
+    <p id="displayCards">Your deck has no cards yet!</p>
+    <div id='spaceDiv'></div>
 
-    
+    <!--STUDY-->
+    <h1>Study Below: </h1>
+    <div id='studyContent'>
+    <div id='studyItem'><button>Back</button></div>
+    <div id='studyItem'><div id='currentCard'></div></div>
+    <div id='studyItem'><button id='studyItem'>Next</button></div>
+    </div>
 
     <script src="deck.js"></script>
     <script src="card.js"></script>
