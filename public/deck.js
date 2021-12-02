@@ -7,11 +7,11 @@ class Deck {
     this.unseenCards = []; //holds the flashcards that the user has not seen yet
     this.name = ""; //stores the name of the deck created
     this.cards = []; //stores the cards in the deck
-    //this.cardStatus = false; //stores true if the card has been studied, false if the card has not been studied (card class?)
   }
 
   /**
-   * Takes a given card and will add it to the deck
+   * Takes a given card and will add it to the deck. Also places
+   * the card into the unseen set of cards
    * @param {Card object} Card
    */
   addCardToDeck(Card) {
@@ -20,13 +20,15 @@ class Deck {
   }
 
   /**
-   * Given a number, the card in the deck with the corresponding number will be returned.
+   * Given a number, the card in the deck with the
+   * corresponding IDnumber will be returned.
    * @param {number} cardNumber
    * @returns card at specified number
+   * @returns null if card does not exist
    */
   getCard(tempCardID) {
     for (let i = 0; i < this.cards.length; i++) {
-      if (cards[i].cardID == tempCardID) {
+      if (this.cards[i].cardID == tempCardID) {
         return this.cards[i];
       } else {
         return null;
@@ -35,12 +37,15 @@ class Deck {
   }
 
   /**
-   * Calling this method will show the user the next card in the deck in order
+   * Calling this method will return the next card in the deck in
+   * the currentorder. Moves this card into the seen category
+   * and removes from the unseen category.
    * @returns current card
+   * @returns null if there are no more unseen cards to study
    */
   showNextCard() {
-    //alwways starts showing the deck from the beginning, does this need to be a global variable?
     if (this.unseenCards.length > 0) {
+      //if there is an unseen card
       let currCard = this.unseenCards[0];
       this.unseenCards.shift(); //removes the first element of the array
       this.seenCards.push(currCard); //adds card to seen array
@@ -56,16 +61,12 @@ class Deck {
    * @returns random Card in the deck
    */
   shuffle() {
-    const randomCardID = Math.floor(Math.random() * this.cards.length); //grabs a random ID from the deck of flashcards
-    const randomCard = this.cards[randomCardID];
-    if (!seenCards.Contains(randomCard)) {
-      seenCards.push(randomCard);
-      this.cards.splice(randomCardID, 1);
-    } else {
-      unseenCards.push(randomCard);
-      this.cards.splice(randomCardID, 1);
+    for (let i = this.unseenCards.length; i > 0; i++) {
+      let j = Math.floor(Math.random() * i);
+      let card1 = this.unseenCards[i];
+      this.unseenCards[i] = this.unseenCards[j];
+      this.unseenCards[j] = card1;
     }
-    return randomCardID;
   }
 
   /**
@@ -75,7 +76,10 @@ class Deck {
   getDeckName() {
     return this.name;
   }
-  studyWholeDeckAgain() {}
+  studyWholeDeckAgain() {
+    this.seenCards = [];
+    this.unseenCards = this.cards;
+  }
 }
 
 // // When pressed, button will bring user back to homepage
@@ -112,3 +116,15 @@ class Deck {
 //     });
 //   }
 //});
+
+//old shuffle method
+// const randomCardID = Math.floor(Math.random() * this.unseenCards.length); //grabs a random ID from the deck of flashcards
+// const randomCard = this.unseenCards[randomCardID];
+// if (!seenCards.Contains(randomCard)) {
+//   seenCards.push(randomCard);
+//   this.cards.splice(randomCardID, 1);
+// } else {
+//   unseenCards.push(randomCard);
+//   this.cards.splice(randomCardID, 1);
+// }
+// return randomCardID;

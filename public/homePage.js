@@ -25,15 +25,15 @@ newDeck.addEventListener("click", () => {
   }
 });
 
-/* 
-CREATE CARD EVENT LISTENERS!!!!!!!!
- */
+
 // var cardVar = document.querySelector(".card");
 // cardVar.addEventListener("click", function () {
 //   cardVar.classList.toggle("is-flipped");
 // });
 
-/** Track current cards */
+/* 
+CREATE CARD EVENT LISTENERS!!!!!!!!
+ Track current cards */
 let cardList = [];
 let currentCardIndex = 000;
 
@@ -51,6 +51,9 @@ buttonAdd.addEventListener("click", function () {
   console.log(cardList);
   displayCards();
 });
+
+
+
 function displayCards() {
   let cardDisplay = document.querySelector("#display"); //grabs the p tag
   while (cardDisplay.firstChild) {
