@@ -4,28 +4,32 @@
 <head>
     <meta charset='UTF-8' />
     <title>New Deck</title>
-    <link rel='stylesheet' href="pages.css" />
+    <link rel='stylesheet' href="assets/styles.css" />
 </head>
 
 <body>
-    <h1>Create a New Deck</h1>
+    <!--Allows user to study the currently made deck-->
+    <h1 id="study">ADD A inner.HTML here that changes this when a deck and card has been created</h1>
+    <!--CREATES A NEW DECK-->
+    <h1>Create a New Deck Below:</h1>
     <br>
     <input id="deckName" placeholder="Enter Deck Name:" type='text' />
     <button id="newDeck">New Deck</button>
     <p>Click on newly created deck to add cards</p>
 
-    <h2>Add text below to the front and back of the card:</h1>
-    <!--Adds Text to front of card-->
-    <input id="frontText" placeholder="Insert Front Text here">
-    <!--Adds Text to back of card-->
-    <input id="backText" placeholder="Insert Back Text here">
-    <button id="button">Add Back & Front Text</button>
-    <h2>Decks:</h2>
-    <p id="displayDecks"></p>
+    <!--CREATES A NEW CARD-->
+    <h1>Create a New Card Below: </h1>
+    <h2>Add text below to the front and back of the card:</h2>
+    <input id="frontText" placeholder="Enter Front Card Text:">
+    <input id="backText" placeholder="Enter Back Card Text:">
+    <button id="newCardButton">Add Back & Front Text</button>
+    <h2 id='currentDisplay'>Decks:</h2>
+    <p id="display"></p>
 
-    <h3>Study
+    
 
     <script src="deck.js"></script>
+    <script src="card.js"></script>
     <script src="homePage.js"></script>
 </body>
 

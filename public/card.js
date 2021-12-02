@@ -1,27 +1,3 @@
-var cardVar = document.querySelector(".card");
-cardVar.addEventListener("click", function () {
-  cardVar.classList.toggle("is-flipped");
-});
-
-/** Track current cards */
-let cardList = [];
-let currentCardIndex = 000;
-
-var buttonAdd = document.querySelector("#button");
-buttonAdd.addEventListener("click", function () {
-  let newCard = new card(currentCardIndex);
-  newCard.addFrontText(frontText.value);
-  newCard.addBackText(backText.value);
-  console.log(newCard.geBackText());
-  console.log(newCard.getFrontText());
-  frontOfCard.innerHTML = newCard.getFrontText();
-  backOfCard.innerHTML = newCard.geBackText();
-  cardList.push(newCard);
-  currentCardIndex++;
-  console.log(cardList);
-  displayCards();
-});
-
 /**
  * Create a card and instantiates corresponding fields
  */
@@ -117,21 +93,3 @@ class card {
   }
 }
 
-function displayCards() {
-  let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
-  while (cardDisplay.firstChild) {
-    cardDisplay.removeChild(cardDisplay.firstChild);
-  }
-  for (let i = 0; i < cardList.length; i++) {
-    let cardName = cardList[i].getFrontText();
-    let newCardDiv = document.createElement("div");
-    let newCardDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
-    newCardDisp.setAttribute("id", "cardID");
-    newCardDisp.innerHTML = cardName;
-    newCardDiv.classList.add("card");
-    newCardDisp.classList.add("cardDisp");
-    newCardDiv.appendChild(newCardDisp);
-    cardDisplay.appendChild(newCardDiv);
-    //console.log(cardDisplay.childNodes)
-  }
-}

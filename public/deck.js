@@ -3,9 +3,11 @@
  */
 class Deck {
   constructor() {
+    this.seenCards = []; //holds the flashcards that the user has already seen
+    this.unseenCards = []; //holds the flashcards that the user has not seen yet
     this.name = ""; //stores the name of the deck created
     this.cards = []; //stores the cards in the deck
-    this.cardStatus = false; //stores true if the card has been studied, false if the card has not been studied (card class?)
+    //this.cardStatus = false; //stores true if the card has been studied, false if the card has not been studied (card class?)
   }
 
   /**
@@ -14,6 +16,7 @@ class Deck {
    */
   addCardToDeck(Card) {
     this.cards.push(Card);
+    this.unseenCards.push(Card);
   }
 
   /**
@@ -21,12 +24,12 @@ class Deck {
    * @param {number} cardNumber
    * @returns card at specified number
    */
-  getCard(cardID) {
+  getCard(tempCardID) {
     for (let i = 0; i < this.cards.length; i++) {
-      if (cardID == i) {
+      if (cards[i].cardID == tempCardID) {
         return this.cards[i];
       } else {
-        console.log("Card not found!");
+        return null;
       }
     }
   }
@@ -36,12 +39,14 @@ class Deck {
    * @returns current card
    */
   showNextCard() {
-    let currentCard = 0; //alwways starts showing the deck from the beginning, does this need to be a global variable?
-    if (currentCard < this.cards.length) {
-      currentCard += 1; //incements by one to show the next card
-      return this.cards[currentCard];
+    //alwways starts showing the deck from the beginning, does this need to be a global variable?
+    if (this.unseenCards.length > 0) {
+      let currCard = this.unseenCards[0];
+      this.unseenCards.shift(); //removes the first element of the array
+      this.seenCards.push(currCard); //adds card to seen array
+      return currCard;
     } else {
-      console.log("You have reached the end of your deck!");
+      return null; //at the end of the deck!!!!
     }
   }
 
@@ -50,9 +55,7 @@ class Deck {
    * shows it to the user and and adds it to the appropriate array.
    * @returns random Card in the deck
    */
-  showNextShuffledCard() {
-    let seenCards = []; //holds the flashcards that the user has already seen randomly
-    let unseenCards = []; //holds the flashcards that the user has not seen yet
+  shuffle() {
     const randomCardID = Math.floor(Math.random() * this.cards.length); //grabs a random ID from the deck of flashcards
     const randomCard = this.cards[randomCardID];
     if (!seenCards.Contains(randomCard)) {
@@ -72,6 +75,7 @@ class Deck {
   getDeckName() {
     return this.name;
   }
+  studyWholeDeckAgain() {}
 }
 
 // // When pressed, button will bring user back to homepage
