@@ -46,10 +46,10 @@ buttonAdd.addEventListener("click", function () {
   let newCard = new card(currentCardIndex);
   newCard.addFrontText(frontText.value);
   newCard.addBackText(backText.value); //we need to add the card to the deck at somepoint: deck.addCard(Card)
-  console.log(newCard.geBackText());
-  console.log(newCard.getFrontText());
-  frontOfCard.innerHTML = newCard.getFrontText();
-  backOfCard.innerHTML = newCard.geBackText();
+  // console.log(newCard.geBackText());
+  // console.log(newCard.getFrontText());
+  // frontOfCard.innerHTML = newCard.getFrontText();
+  // backOfCard.innerHTML = newCard.geBackText();
   cardList.push(newCard);
   currentCardIndex++;
   console.log(cardList);
@@ -59,7 +59,7 @@ buttonAdd.addEventListener("click", function () {
 
 
 function displayCards() {
-  let cardDisplay = document.querySelector("#display"); //grabs the p tag
+  let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
   while (cardDisplay.firstChild) {
     cardDisplay.removeChild(cardDisplay.firstChild);
   }
