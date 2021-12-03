@@ -82,6 +82,7 @@ body {
   height: 300px;
   background-color: seagreen;
   color: white;
+  line-height: 300px;
   text-align: center;
   border-radius: 25px;
 }
@@ -97,6 +98,7 @@ body {
   background-color: rgb(186, 226, 252);
   font-size: 15pt;
   color: white;
+  line-height: 260px;
   text-align: center;
   font-weight: bold;
   border-radius: 25px;
