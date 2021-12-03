@@ -13,6 +13,8 @@ newDeck.addEventListener("click", () => {
   myDeck.name = document.querySelector("#deckName").value; // sets name of the deck to the given input from the user
   let deckDisplay = document.querySelector("#displayDecks"); //grabs the p tag
   if (myDeck.name != "" && deckDisplay.childElementCount == 0) {
+    let header = document.querySelector("#study");
+    header.innerHTML = "You are currently studying " + myDeck.name + "." //changes the header to list the appropriate deck and which card is being looked at
     deckDisplay.innerHTML = '';
     let deckName = myDeck.name;
     let newDeckDiv = document.createElement("div");
