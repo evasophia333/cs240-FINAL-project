@@ -13,10 +13,10 @@ newDeck.addEventListener("click", () => {
   myDeck.name = document.querySelector("#deckName").value; // sets name of the deck to the given input from the user
   let deckDisplay = document.querySelector("#displayDecks"); //grabs the p tag
   if (myDeck.name != "" && deckDisplay.childElementCount == 0) {
-    let header = document.querySelector("#study");
-    header.innerHTML = "You are currently studying " + myDeck.name + "." //changes the header to list the appropriate deck and which card is being looked at
-    deckDisplay.innerHTML = '';
     let deckName = myDeck.name;
+    deckDisplay.innerHTML = '';
+    let header = document.querySelector("#study");
+    header.innerHTML = "You are currently studying " + deckName + "." //changes the header to list the appropriate deck and which card is being looked at
     let newDeckDiv = document.createElement("div");
     let newDeckDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
     newDeckDisp.setAttribute("id", "deckID");
@@ -78,3 +78,14 @@ function displayCards() {
     //console.log(cardDisplay.childNodes)
   }
 }
+
+//displays the cards in the deck for the user to scroll through
+// function displayCurrentCard() {
+//   let currentCard = document.querySelector("#currentCard");
+//   if (cardList.length != 0){
+//     let card = cardList[currentCardIndex];
+//     let frontText = card.getFrontText();
+//     currentCard.innerHTML = frontText;
+//   }
+// }
+

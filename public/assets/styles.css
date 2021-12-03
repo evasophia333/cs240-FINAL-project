@@ -17,7 +17,8 @@ body {
 .card {
   width: 100%;
   height: 100%;
-  transition: transform 1s;
+  transition: all 0.75s ease;
+  /*transition: transform 1s;*/
   transform-style: preserve-3d;
   cursor: pointer;
   position: center;
@@ -125,6 +126,7 @@ body {
   width: 200px;
   background-color: rgb(186, 226, 252);
   border-radius: 25px;
+  line-height: 300px;
 }
 
 #navButton {

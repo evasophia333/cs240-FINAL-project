@@ -51,7 +51,7 @@ class card {
    * shows the text on the back of the card
    * @returns
    */
-  geBackText() {
+  getBackText() {
     return this.backText;
   }
   /**
