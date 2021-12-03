@@ -15,13 +15,14 @@ body {
 }
 
 .card {
-  width: 100%;
-  height: 100%;
+  width: 15%;
+  height: 15%;
   transition: all 0.75s ease;
   /*transition: transform 1s;*/
   transform-style: preserve-3d;
   cursor: pointer;
-  position: center;
+  vertical-align: middle;
+  padding: 10pt;
 }
 
 .card.is-flipped {
@@ -32,24 +33,29 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  line-height: 260px;
   color: white;
   text-align: center;
   font-weight: bold;
   font-size: 40px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  overflow: scroll;
+  padding: 10px;
 }
 
 .card__face--front {
   background: rgb(186, 226, 252);
   font-size: 15pt;
+  width: 200px;
+  height: 300px;
 }
 
 .card__face--back {
   background: rgb(165, 165, 165);
   transform: rotateY(180deg);
   font-size: 15pt;
+  width: 200px;
+  height: 300px;
 }
 
 #newDeck,

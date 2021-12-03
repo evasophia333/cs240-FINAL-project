@@ -32,10 +32,10 @@ newDeck.addEventListener("click", () => {
 });
 
 
-// var cardVar = document.querySelector(".card");
-// cardVar.addEventListener("click", function () {
-//   cardVar.classList.toggle("is-flipped");
-// });
+var cardVar = document.querySelector(".card");
+cardVar.addEventListener("click", function () {
+  cardVar.classList.toggle("is-flipped");
+});
 
 /* 
 CREATE CARD EVENT LISTENERS!!!!!!!!

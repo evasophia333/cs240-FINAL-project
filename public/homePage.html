@@ -27,14 +27,19 @@
     <button id="newCardButton">Add Back & Front Text</button>
     <h2 id='cardDisplay'>Cards:</h2>
     <p id="displayCards">Your deck has no cards yet!</p>
-    <div id='spaceDiv'></div>
+    <div id='spaceDiv'>
+    </div>
 
     <!--STUDY-->
     <h1>Study Below: </h1>
     <div id='studyContent'>
-    <div id='studyItem'><button>Back</button></div>
-    <div id='studyItem'><div id='currentCard'></div></div>
-    <div id='studyItem'><button id='studyItem'>Next</button></div>
+        <div id='button01'><button>Back</button></div>
+        <div class='card' id='studyItem'>
+            <div id='frontOfCard' class="card__face card__face--front">**Add Front Text**</div>
+            <div id='backOfCard' class="card__face card__face--back">**Add Back Text**</div>
+
+        </div>
+        <div id='button02'><button id='studyItem'>Next</button></div>
     </div>
 
     <script src="deck.js"></script>
