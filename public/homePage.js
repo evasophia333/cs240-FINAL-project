@@ -11,9 +11,10 @@ let newDeck = document.querySelector("#newDeck");
 newDeck.addEventListener("click", () => {
   myDeck = new Deck(); // creates a new deck object
   myDeck.name = document.querySelector("#deckName").value; // sets name of the deck to the given input from the user
-  if (myDeck.name != "") {
+  let deckDisplay = document.querySelector("#displayDecks"); //grabs the p tag
+  if (myDeck.name != "" && deckDisplay.childElementCount == 0) {
+    deckDisplay.innerHTML = '';
     let deckName = myDeck.name;
-    let deckDisplay = document.querySelector("#display"); //grabs the p tag
     let newDeckDiv = document.createElement("div");
     let newDeckDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
     newDeckDisp.setAttribute("id", "deckID");
@@ -22,6 +23,9 @@ newDeck.addEventListener("click", () => {
     newDeckDisp.classList.add("deckDisp");
     newDeckDiv.appendChild(newDeckDisp);
     deckDisplay.appendChild(newDeckDiv);
+  }
+  else if (deckDisplay.childElementCount != 0) {
+    alert('You cannot create more then one deck. Scroll down to add card or reload page to create a new deck.')
   }
 });
 
