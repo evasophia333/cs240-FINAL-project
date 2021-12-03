@@ -83,6 +83,7 @@ body {
   background-color: seagreen;
   color: white;
   text-align: center;
+  border-radius: 25px;
 }
 
 .card {
@@ -98,6 +99,7 @@ body {
   color: white;
   text-align: center;
   font-weight: bold;
+  border-radius: 25px;
 }
 
 #spaceDiv {
@@ -118,8 +120,13 @@ body {
   height: 300px;
   width: 200px;
   background-color: rgb(186, 226, 252);
+  border-radius: 25px;
 }
 
 #navButton {
   margin: 100px 0px 100px 0px;
+}
+
+#displayCards {
+  float: left;
 }
