@@ -2,7 +2,7 @@
 Global variable: deck!!!!! stores the current deck used
  */
 
-let myDeck;
+let myDeck = null;
 
 // NEW DECK EVENT LISTENER
 //Creates a new deck and adds it to a list for the user to keep track of their decks
@@ -45,17 +45,21 @@ let currentCardIndex = 000;
 
 var buttonAdd = document.querySelector("#newCardButton");
 buttonAdd.addEventListener("click", function () {
-  let newCard = new card(currentCardIndex);
-  newCard.addFrontText(frontText.value);
-  newCard.addBackText(backText.value); //we need to add the card to the deck at somepoint: deck.addCard(Card)
-  // console.log(newCard.geBackText());
-  // console.log(newCard.getFrontText());
-  // frontOfCard.innerHTML = newCard.getFrontText();
-  // backOfCard.innerHTML = newCard.geBackText();
-  cardList.push(newCard);
-  currentCardIndex++;
-  console.log(cardList);
-  displayCards();
+  if (myDeck == null) {
+    alert('unable to make cards without a deck! Please make a deck first.')
+  } else {
+    let newCard = new card(currentCardIndex);
+    newCard.addFrontText(frontText.value);
+    newCard.addBackText(backText.value); //we need to add the card to the deck at somepoint: deck.addCard(Card)
+    // console.log(newCard.geBackText());
+    // console.log(newCard.getFrontText());
+    // frontOfCard.innerHTML = newCard.getFrontText();
+    // backOfCard.innerHTML = newCard.geBackText();
+    cardList.push(newCard);
+    currentCardIndex++;
+    console.log(cardList);
+    displayCards();
+  }
 });
 
 
