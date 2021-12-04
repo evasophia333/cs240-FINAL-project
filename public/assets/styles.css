@@ -48,6 +48,8 @@ body {
   font-size: 15pt;
   width: 200px;
   height: 300px;
+  line-height: 300px;
+  border-radius: 25px;
 }
 
 .card__face--back {
@@ -56,6 +58,8 @@ body {
   font-size: 15pt;
   width: 200px;
   height: 300px;
+  line-height: 300px;
+  border-radius: 25px;
 }
 
 #newDeck,
@@ -133,6 +137,7 @@ body {
   background-color: rgb(186, 226, 252);
   border-radius: 25px;
   line-height: 300px;
+  border-radius: 25px;
 }
 
 #navButton {
