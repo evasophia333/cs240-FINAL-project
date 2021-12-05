@@ -148,3 +148,7 @@ body {
   font-size: 32px;
   background-color: white;
 }
+
+.header {
+  padding-top: 0pt;
+}

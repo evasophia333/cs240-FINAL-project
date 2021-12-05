@@ -25,9 +25,11 @@ newDeck.addEventListener("click", () => {
     newDeckDisp.classList.add("deckDisp");
     newDeckDiv.appendChild(newDeckDisp);
     deckDisplay.appendChild(newDeckDiv);
+    let card = document.getElementById("createCard");
+    card.style.paddingTop = "225pt";
   } else if (deckDisplay.childElementCount != 0) {
     alert(
-      "You cannot create more then one deck. Reload the page to make a new deck."
+      "You cannot create more than one deck. Reload the page to make a new deck."
     );
   }
 });
@@ -61,8 +63,42 @@ buttonAdd.addEventListener("click", function () {
     //console.log(cardList);
     myDeck.addCardToDeck(newCard);
     displayCards();
+    showStudyCard();
   }
 });
+function showStudyCard() {
+  let currCard = myDeck.showNextCard();
+  let studyDisplay = document.querySelector("#studyItem");
+  if (currCard !== null) {
+    studyDisplay.innerHTML = "";
+    let cardName = currCard.getFrontText();
+    let newCardDiv = document.createElement("div");
+    let newCardDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
+    newCardDisp.setAttribute("id", "cardID");
+    //newCardDisp.innerHTML = cardName;
+    let frontCardDiv = document.createElement("div");
+    let backCardDiv = document.createElement("div");
+    frontCardDiv.classList.add("card__face");
+    frontCardDiv.classList.add("card__face--front");
+    backCardDiv.classList.add("card__face");
+    backCardDiv.classList.add("card__face--back");
+    frontCardDiv.innerHTML = cardName;
+    backCardDiv.innterHTML = currCard.getBackText();
+    frontCardDiv.setAttribute("id", "frontOfCard");
+    backCardDiv.setAttribute("id", "backOfCard");
+    //<!-- <div id='frontOfCard' class="card__face card__face--front">**Add Front Text**</div>
+    //<div id='backOfCard' class="card__face card__face--back">**Add Back Text**</div> -->
+    newCardDiv.classList.add("card");
+    newCardDisp.classList.add("cardDisp");
+    newCardDisp.appendChild(frontCardDiv);
+    newCardDisp.appendChild(backCardDiv);
+    //newCardDiv.appendChild(newCardDisp);
+    //studyDisplay.appendChild(newCardDiv);
+    studyDisplay.appendChild(newCardDisp);
+  } else {
+    studyDisplay.innerHTML = "You have studied the whole deck!";
+  }
+}
 
 function displayCards() {
   let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
@@ -91,7 +127,3 @@ function displayCards() {
 //     currentCard.innerHTML = frontText;
 //   }
 // }
-function studyCards() {
-  myDeck
-
-}
