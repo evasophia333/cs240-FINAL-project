@@ -10,6 +10,16 @@
 <body>
     <!--Allows user to study the currently made deck-->
     <h1 id="study">Welcome to FLASHY, let the studying begin!</h1>
+    <!--STUDY-->
+    <h1>Study Below: </h1>
+    <div id='studyContent'>
+        <div id='button01'><button>Back</button></div>
+        <div class='card' id='studyItem'>
+            <div id='frontOfCard' class="card__face card__face--front">**Add Front Text**</div>
+            <div id='backOfCard' class="card__face card__face--back">**Add Back Text**</div>
+        </div>
+        <div id='button02'><button id='studyItem'>Next</button></div>
+    </div>
     <!--ADD A inner.HTML here that changes this when a deck and card has been created-->
     <!--CREATES A NEW DECK-->
     <h1>Create a Deck Below:</h1>
@@ -29,16 +39,7 @@
     <p id="displayCards">Your deck has no cards yet!</p>
     <div id='spaceDiv'></div>
 
-    <!--STUDY-->
-    <h1>Study Below: </h1>
-    <div id='studyContent'>
-        <div id='button01'><button>Back</button></div>
-        <div class='card' id='studyItem'>
-            <div id='frontOfCard' class="card__face card__face--front">**Add Front Text**</div>
-            <div id='backOfCard' class="card__face card__face--back">**Add Back Text**</div>
-        </div>
-        <div id='button02'><button id='studyItem'>Next</button></div>
-    </div>
+    
 
     <script src="deck.js"></script>
     <script src="card.js"></script>
