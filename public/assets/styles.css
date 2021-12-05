@@ -128,7 +128,7 @@ body {
 
 #studyContent {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /*versus center*/
 }
 
 #currentCard {
