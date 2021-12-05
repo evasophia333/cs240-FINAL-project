@@ -26,8 +26,8 @@ newDeck.addEventListener("click", () => {
     newDeckDiv.appendChild(newDeckDisp);
     deckDisplay.appendChild(newDeckDiv);
   } else if (deckDisplay.childElementCount != 0) {
-    confrim(
-      "You cannot create more then one deck. Click OK to make a new Deck or cancel to reutrn to the old deck."
+    alert(
+      "You cannot create more then one deck. Reload the page to make a new deck."
     );
   }
 });
@@ -59,18 +59,18 @@ buttonAdd.addEventListener("click", function () {
     //cardList.push(newCard);
     currentCardIndex++;
     //console.log(cardList);
-    myDeck.addCard(newCard);
+    myDeck.addCardToDeck(newCard);
     displayCards();
   }
 });
 
 function displayCards() {
   let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
-  // while (cardDisplay.firstChild) {
-  //   cardDisplay.removeChild(cardDisplay.firstChild);
-  // }
-  for (let i = 0; i < cardList.length; i++) {
-    let cardName = cardList[i].getFrontText();
+  while (cardDisplay.firstChild) {
+    cardDisplay.removeChild(cardDisplay.firstChild);
+  }
+  for (let i = 0; i < myDeck.cards.length; i++) {
+    let cardName = myDeck.cards[i].getFrontText();
     let newCardDiv = document.createElement("div");
     let newCardDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
     newCardDisp.setAttribute("id", "cardID");
@@ -91,4 +91,7 @@ function displayCards() {
 //     currentCard.innerHTML = frontText;
 //   }
 // }
-function studyCards() {}
+function studyCards() {
+  myDeck
+
+}
