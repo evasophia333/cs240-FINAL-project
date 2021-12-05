@@ -15,14 +15,16 @@ body {
 }
 
 .card {
-  width: 16%;
-  height: 16%;
+  width: 30%;
+  height: 30%;
   transition: all 0.75s ease;
   /*transition: transform 1s;*/
   transform-style: preserve-3d;
   cursor: pointer;
-  vertical-align: middle;
+  vertical-align:middle;
   padding: 10pt;
+  padding-bottom: 200pt;
+
 }
 
 .card.is-flipped {
@@ -40,7 +42,6 @@ body {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: scroll;
-  padding: 10px;
 }
 
 .card__face--front {

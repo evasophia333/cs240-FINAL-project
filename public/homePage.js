@@ -27,7 +27,7 @@ newDeck.addEventListener("click", () => {
     deckDisplay.appendChild(newDeckDiv);
   }
   else if (deckDisplay.childElementCount != 0) {
-    alert('You cannot create more then one deck. Scroll down to add card or reload page to create a new deck.')
+    confrim('You cannot create more then one deck. Click OK to make a new Deck or cancel to reutrn to the old deck.')
   }
 });
 
