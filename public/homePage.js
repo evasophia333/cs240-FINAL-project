@@ -14,9 +14,9 @@ newDeck.addEventListener("click", () => {
   let deckDisplay = document.querySelector("#displayDecks"); //grabs the p tag
   if (myDeck.name != "" && deckDisplay.childElementCount == 0) {
     let deckName = myDeck.name;
-    deckDisplay.innerHTML = '';
+    deckDisplay.innerHTML = "";
     let header = document.querySelector("#study");
-    header.innerHTML = "You are currently studying " + deckName + "." //changes the header to list the appropriate deck and which card is being looked at
+    header.innerHTML = "You are currently studying " + deckName + "."; //changes the header to list the appropriate deck and which card is being looked at
     let newDeckDiv = document.createElement("div");
     let newDeckDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
     newDeckDisp.setAttribute("id", "deckID");
@@ -25,13 +25,14 @@ newDeck.addEventListener("click", () => {
     newDeckDisp.classList.add("deckDisp");
     newDeckDiv.appendChild(newDeckDisp);
     deckDisplay.appendChild(newDeckDiv);
-  }
-  else if (deckDisplay.childElementCount != 0) {
-    confrim('You cannot create more then one deck. Click OK to make a new Deck or cancel to reutrn to the old deck.')
+  } else if (deckDisplay.childElementCount != 0) {
+    confrim(
+      "You cannot create more then one deck. Click OK to make a new Deck or cancel to reutrn to the old deck."
+    );
   }
 });
 
-
+//study session card flip
 var cardVar = document.querySelector(".card");
 cardVar.addEventListener("click", function () {
   cardVar.classList.toggle("is-flipped");
@@ -40,13 +41,13 @@ cardVar.addEventListener("click", function () {
 /* 
 CREATE CARD EVENT LISTENERS!!!!!!!!
  Track current cards */
-let cardList = [];
-let currentCardIndex = 000;
+//let cardList = [];
+let currentCardIndex = 0;
 
 var buttonAdd = document.querySelector("#newCardButton");
 buttonAdd.addEventListener("click", function () {
   if (myDeck == null) {
-    alert('unable to make cards without a deck! Please make a deck first.')
+    alert("unable to make cards without a deck! Please make a deck first.");
   } else {
     let newCard = new card(currentCardIndex);
     newCard.addFrontText(frontText.value);
@@ -55,20 +56,19 @@ buttonAdd.addEventListener("click", function () {
     // console.log(newCard.getFrontText());
     // frontOfCard.innerHTML = newCard.getFrontText();
     // backOfCard.innerHTML = newCard.geBackText();
-    cardList.push(newCard);
+    //cardList.push(newCard);
     currentCardIndex++;
-    console.log(cardList);
+    //console.log(cardList);
+    myDeck.addCard(newCard);
     displayCards();
   }
 });
 
-
-
 function displayCards() {
   let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
-  while (cardDisplay.firstChild) {
-    cardDisplay.removeChild(cardDisplay.firstChild);
-  }
+  // while (cardDisplay.firstChild) {
+  //   cardDisplay.removeChild(cardDisplay.firstChild);
+  // }
   for (let i = 0; i < cardList.length; i++) {
     let cardName = cardList[i].getFrontText();
     let newCardDiv = document.createElement("div");
@@ -79,7 +79,6 @@ function displayCards() {
     newCardDisp.classList.add("cardDisp");
     newCardDiv.appendChild(newCardDisp);
     cardDisplay.appendChild(newCardDiv);
-    //console.log(cardDisplay.childNodes)
   }
 }
 
@@ -92,4 +91,4 @@ function displayCards() {
 //     currentCard.innerHTML = frontText;
 //   }
 // }
-
+function studyCards() {}
