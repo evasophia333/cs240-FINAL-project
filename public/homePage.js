@@ -34,6 +34,11 @@ newDeck.addEventListener("click", () => {
   }
 });
 
+let nextButton = document.querySelector("#button02");
+nextButton.addEventListener("click", function () {
+  showStudyCard();
+});
+
 //study session card flip
 var cardVar = document.querySelector(".card");
 cardVar.addEventListener("click", function () {
@@ -62,41 +67,23 @@ buttonAdd.addEventListener("click", function () {
     currentCardIndex++;
     //console.log(cardList);
     myDeck.addCardToDeck(newCard);
+
     displayCards();
-    showStudyCard();
+    if (myDeck.cards.length === 1) {
+      showStudyCard();
+    }
   }
 });
 function showStudyCard() {
   let currCard = myDeck.showNextCard();
   let studyDisplay = document.querySelector("#studyItem");
   if (currCard !== null) {
-    studyDisplay.innerHTML = "";
-    let cardName = currCard.getFrontText();
-    let newCardDiv = document.createElement("div");
-    let newCardDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
-    newCardDisp.setAttribute("id", "cardID");
-    //newCardDisp.innerHTML = cardName;
-    let frontCardDiv = document.createElement("div");
-    let backCardDiv = document.createElement("div");
-    frontCardDiv.classList.add("card__face");
-    frontCardDiv.classList.add("card__face--front");
-    backCardDiv.classList.add("card__face");
-    backCardDiv.classList.add("card__face--back");
-    frontCardDiv.innerHTML = cardName;
-    backCardDiv.innterHTML = currCard.getBackText();
-    frontCardDiv.setAttribute("id", "frontOfCard");
-    backCardDiv.setAttribute("id", "backOfCard");
-    //<!-- <div id='frontOfCard' class="card__face card__face--front">**Add Front Text**</div>
-    //<div id='backOfCard' class="card__face card__face--back">**Add Back Text**</div> -->
-    newCardDiv.classList.add("card");
-    newCardDisp.classList.add("cardDisp");
-    newCardDisp.appendChild(frontCardDiv);
-    newCardDisp.appendChild(backCardDiv);
-    //newCardDiv.appendChild(newCardDisp);
-    //studyDisplay.appendChild(newCardDiv);
-    studyDisplay.appendChild(newCardDisp);
+    let frontOfCard = document.querySelector("#frontOfCard");
+    let backOfCard = document.querySelector("#backOfCard");
+    frontOfCard.innerHTML = currCard.getFrontText();
+    backOfCard.innerHTML = currCard.getBackText();
   } else {
-    studyDisplay.innerHTML = "You have studied the whole deck!";
+    studyDisplay.innerHTML = "You have studied the whole deck!"; //TODO how to reset the page
   }
 }
 
