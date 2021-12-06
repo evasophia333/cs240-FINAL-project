@@ -78,7 +78,6 @@ class Deck {
       this.unseenCards[i] = this.unseenCards[j];
       this.unseenCards[j] = card1;
     }
-    this.seenCards = [];
   }
 
   /**
