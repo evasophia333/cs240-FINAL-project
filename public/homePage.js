@@ -36,7 +36,12 @@ newDeck.addEventListener("click", () => {
 
 let nextButton = document.querySelector("#button02");
 nextButton.addEventListener("click", function () {
-  showStudyCard();
+  showNextStudyCard();
+});
+
+let backButton = document.querySelector('#button01');
+backButton.addEventListener('click', function() {
+  showLastStudyCard();
 });
 
 //study session card flip
@@ -70,11 +75,12 @@ buttonAdd.addEventListener("click", function () {
 
     displayCards();
     if (myDeck.cards.length === 1) {
-      showStudyCard();
+      showNextStudyCard();
     }
   }
 });
-function showStudyCard() {
+
+function showNextStudyCard() {
   let currCard = myDeck.showNextCard();
   let studyDisplay = document.querySelector("#studyItem");
   if (currCard !== null) {
@@ -84,6 +90,19 @@ function showStudyCard() {
     backOfCard.innerHTML = currCard.getBackText();
   } else {
     studyDisplay.innerHTML = "You have studied the whole deck!"; //TODO how to reset the page
+  }
+}
+
+function showLastStudyCard() {
+  let currCard = myDeck.showLastCard();
+  let studyDisplay = document.querySelector("#studyItem");
+  if (currCard !== null) {
+    let frontOfCard = document.querySelector("#frontOfCard");
+    let backOfCard = document.querySelector("#backOfCard");
+    frontOfCard.innerHTML = currCard.getFrontText();
+    backOfCard.innerHTML = currCard.getBackText();
+  } else {
+    studyDisplay.innerHTML = "You have reached the beginning of the deck. You cannot go back farther!"; //TODO how to reset the page
   }
 }
 
