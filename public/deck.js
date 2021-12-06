@@ -3,6 +3,7 @@
  */
 class Deck {
   constructor() {
+    this.currentIndex = -1;
     this.seenCards = []; //holds the flashcards that the user has already seen
     this.unseenCards = []; //holds the flashcards that the user has not seen yet
     this.name = ""; //stores the name of the deck created
@@ -49,9 +50,19 @@ class Deck {
       let currCard = this.unseenCards[0];
       this.unseenCards.shift(); //removes the first element of the array
       this.seenCards.push(currCard); //adds card to seen array
+      this.currentIndex ++; //increment the index
       return currCard;
     } else {
       return null; //at the end of the deck!!!!
+    }
+  }
+
+  showLastCard() {
+    if (this.currentIndex > 0) {
+      this.currentIndex --; //decrement the index
+      return (this.cards[this.currentIndex]);
+    } else {
+      return null;
     }
   }
 
@@ -67,6 +78,7 @@ class Deck {
       this.unseenCards[i] = this.unseenCards[j];
       this.unseenCards[j] = card1;
     }
+    this.seenCards = [];
   }
 
   /**
