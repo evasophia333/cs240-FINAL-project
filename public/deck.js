@@ -3,7 +3,6 @@
  */
 class Deck {
   constructor() {
-    this.currentIndex = -1;
     this.seenCards = []; //holds the flashcards that the user has already seen
     this.unseenCards = []; //holds the flashcards that the user has not seen yet
     this.name = ""; //stores the name of the deck created
@@ -44,13 +43,13 @@ class Deck {
    * @returns current card
    * @returns null if there are no more unseen cards to study
    */
+  
   showNextCard() {
-    if (this.unseenCards.length > 0) {
-      //if there is an unseen card
-      let currCard = this.unseenCards[0];
+    if (this.unseenCards.length > 0) { //if there is an unseen card
+      console.log(this.unseenCards[0].frontText)
+      let currCard = this.unseenCards[0]
       this.unseenCards.shift(); //removes the first element of the array
-      this.seenCards.push(currCard); //adds card to seen array
-      this.currentIndex ++; //increment the index
+      this.seenCards.push(currCard); //adds card to end of seen array
       return currCard;
     } else {
       return null; //at the end of the deck!!!!
@@ -58,9 +57,14 @@ class Deck {
   }
 
   showLastCard() {
-    if (this.currentIndex > 0) {
-      this.currentIndex --; //decrement the index
-      return (this.cards[this.currentIndex]);
+    let studyDisplay = document.querySelector("#studyItem");
+    if (this.seenCards.length > 1 && studyDisplay.innerHTML != "You have studied the whole deck!") {
+      let currCard = this.seenCards[0];
+      if (this.seenCards.length > 2) {
+        currCard = this.seenCards[this.seenCards.length-2]
+      }
+      this.unseenCards.unshift(this.seenCards.pop());
+      return currCard;
     } else {
       return null;
     }

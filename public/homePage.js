@@ -91,7 +91,7 @@ buttonAdd.addEventListener("click", function () {
 
     displayCards();
     if (myDeck.cards.length === 1) {
-      showNextStudyCard();
+      showNextStudyCard()
     }
   }
 });
