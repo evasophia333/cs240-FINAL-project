@@ -45,11 +45,11 @@ backButton.addEventListener("click", function () {
 });
 
 // SENDS CODE INTO MYSTERIOUS NEVER-ENDING LOOP
-// let shuffleButton = document.querySelector('#shuffle');
-// shuffleButton.addEventListener('click', function() {
-//   console.log("shuffling")
-//   shuffleCards();
-// });
+let shuffleButton = document.querySelector('#shuffle');
+ shuffleButton.addEventListener('click', function() {
+  console.log("shuffling")
+   shuffleCards();
+ });
 
 // FOR BOTH SHUFFLE AND RESET, NEED ALERT FOR WHEN THERE'S NOTHING TO STUDY
 
