@@ -39,8 +39,8 @@ nextButton.addEventListener("click", function () {
   showNextStudyCard();
 });
 
-let backButton = document.querySelector('#button01');
-backButton.addEventListener('click', function() {
+let backButton = document.querySelector("#button01");
+backButton.addEventListener("click", function () {
   showLastStudyCard();
 });
 
@@ -54,9 +54,9 @@ backButton.addEventListener('click', function() {
 // FOR BOTH SHUFFLE AND RESET, NEED ALERT FOR WHEN THERE'S NOTHING TO STUDY
 
 // ALSO DOESN'T WORK?
-let resetButton = document.querySelector('#reset');
-resetButton.addEventListener('click', function() {
-  console.log('resetting')
+let resetButton = document.querySelector("#reset");
+resetButton.addEventListener("click", function () {
+  console.log("resetting");
   resetDeck();
 });
 
@@ -91,7 +91,7 @@ buttonAdd.addEventListener("click", function () {
 
     displayCards();
     if (myDeck.cards.length === 1) {
-      showNextStudyCard()
+      showNextStudyCard();
     }
   }
 });
@@ -136,16 +136,19 @@ function showLastStudyCard() {
     frontOfCard.innerHTML = currCard.getFrontText();
     backOfCard.innerHTML = currCard.getBackText();
   } else {
-    studyDisplay.innerHTML = "You have reached the beginning of the deck. You cannot go back farther!"; //TODO how to reset the page
+    studyDisplay.innerHTML =
+      "You have reached the beginning of the deck. You cannot go back farther!"; //TODO how to reset the page
   }
 }
 
 function shuffleCards() {
   myDeck.shuffle();
+  showNextStudyCard();
 }
 
 function resetDeck() {
   myDeck.studyWholeDeckAgain();
+  showNextStudyCard();
 }
 
 //displays the cards in the deck for the user to scroll through
