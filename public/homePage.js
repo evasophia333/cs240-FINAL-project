@@ -54,11 +54,11 @@ backButton.addEventListener('click', function() {
 // FOR BOTH SHUFFLE AND RESET, NEED ALERT FOR WHEN THERE'S NOTHING TO STUDY
 
 // ALSO DOESN'T WORK?
-// let resetButton = document.querySelector('#reset');
-// resetButton.addEventListener('click', function() {
-//   console.log('resetting')
-//   resetDeck();
-// });
+let resetButton = document.querySelector('#reset');
+resetButton.addEventListener('click', function() {
+  console.log('resetting')
+  resetDeck();
+});
 
 //study session card flip
 var cardVar = document.querySelector(".card");
