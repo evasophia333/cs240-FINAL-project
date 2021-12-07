@@ -43,10 +43,25 @@ class Deck {
    * @returns current card
    * @returns null if there are no more unseen cards to study
    */
+  showFirstCard() {
+    if (this.unseenCards.length > 0) { //if there is an unseen card
+      let currCard = this.unseenCards[0]
+      this.unseenCards.shift(); //removes the first element of the array
+      this.seenCards.push(currCard); //adds card to end of seen array
+      return currCard;
+    } else {
+      return null; //at the end of the deck!!!!
+    }
+  }
+  
   showNextCard() {
-    if (this.unseenCards.length > 0) {
-      //if there is an unseen card
-      let currCard = this.unseenCards[0];
+    console.log (this.unseenCards.length)
+    console.log(this.seenCards.length)
+    if (this.unseenCards.length > 0) { //if there is an unseen card
+      let currCard = this.unseenCards[0]
+      // if (this.seenCards.length == 0) {
+      //   currCard = this.unseenCards[1];
+      // }
       this.unseenCards.shift(); //removes the first element of the array
       this.seenCards.push(currCard); //adds card to end of seen array
       return currCard;
@@ -56,10 +71,11 @@ class Deck {
   }
 
   showLastCard() {
-    console.log(this.seenCards.length-1)
-    if (this.seenCards.length > 0) {
-      let currCard = this.seenCards[this.seenCards.length-1];
-      console.log(this.seenCards[this.seenCards.length-1])
+    if (this.seenCards.length > 0 && this.unseenCards.length != 0) {
+      let currCard = this.seenCards[0];
+      if (this.seenCards.length > 1) {
+        currCard = this.seenCards[this.seenCards.length-2]
+      }
       this.seenCards.pop();
       this.unseenCards.unshift(currCard)
       return currCard;

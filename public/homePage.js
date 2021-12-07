@@ -75,7 +75,17 @@ buttonAdd.addEventListener("click", function () {
 
     displayCards();
     if (myDeck.cards.length === 1) {
-      showNextStudyCard();
+      showNextStudyCard()
+      // let currCard = myDeck.showFirstCard();
+      // let studyDisplay = document.querySelector("#studyItem");
+      // if (currCard !== null) {
+      //   let frontOfCard = document.querySelector("#frontOfCard");
+      //   let backOfCard = document.querySelector("#backOfCard");
+      //   frontOfCard.innerHTML = currCard.getFrontText();
+      //   backOfCard.innerHTML = currCard.getBackText();
+      // } else {
+      //   studyDisplay.innerHTML = "You have studied the whole deck!"; //TODO how to reset the page
+      // }
     }
   }
 });
