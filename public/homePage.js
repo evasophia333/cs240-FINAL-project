@@ -12,8 +12,34 @@ newDeck.addEventListener("click", () => {
   let deckDisplay = document.querySelector("#displayDecks"); //grabs the p tag
   if (deckDisplay.childElementCount != 0) {
     var result = confirm("You cannot create more than one deck. Click 'ok' to confirm that you'd like to delete this deck and create a new one.");
-    console.log(result)
-    if (!result) {
+    if (result) {
+      let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
+      let studyContent = document.querySelector("#studyContent");
+      while (cardDisplay.firstChild) {
+        cardDisplay.removeChild(cardDisplay.firstChild);
+      }
+      while (studyContent.firstChild) {
+        studyContent.removeChild(studyContent.firstChild);
+      }
+      console.log(studyContent)
+      let studyDiv = document.createElement('div');
+      studyDiv.classList.add('card');
+      studyDiv.setAttribute('id', 'studyItem');
+      studyContent.appendChild(studyDiv);
+      let frontDiv = document.createElement('div');
+      frontDiv.classList.add("card__face");
+      frontDiv.classList.add("card__face--front");
+      frontDiv.setAttribute('id','frontOfCard');
+      frontDiv.innerHTML = "**Add Front Text**";
+      studyDiv.appendChild(frontDiv);
+      let backDiv = document.createElement('div');
+      backDiv.classList.add("card__face");
+      backDiv.classList.add("card__face--back");
+      backDiv.setAttribute('id','backOfCard');
+      backDiv.innerHTML = "**Add Back Text**";
+      studyDiv.appendChild(backDiv);
+    }
+    else {
       return;
     }
   }
@@ -82,30 +108,22 @@ var buttonAdd = document.querySelector("#newCardButton");
 let frontText = document.querySelector("#frontText");
 let backText = document.querySelector("#backText");
 buttonAdd.addEventListener("click", function () {
-  console.log(frontText.value);
-  console.log(backText.value);
   if (myDeck == null) {
     alert("unable to make cards without a deck! Please make a deck first.");
   } else {
     let newCard = new card(currentCardIndex);
-    console.log(newCard);
     newCard.addFrontText(frontText.value);
-    newCard.addBackText(backText.value); //we need to add the card to the deck at somepoint: deck.addCard(Card)
-    console.log(newCard.frontText);
-    console.log(newCard.backText);
+    newCard.addBackText(backText.value);
     frontOfCard.innerHTML = newCard.frontText;
     backOfCard.innerHTML = newCard.backText;
     //cardList.push(newCard);
     currentCardIndex++;
-    //console.log(cardList);
     myDeck.addCardToDeck(newCard);
 
     displayCards();
     if (myDeck.cards.length === 1) {
       showNextStudyCard();
-    }
-  }
-});
+}}});
 
 function displayCards() {
   let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
