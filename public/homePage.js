@@ -9,17 +9,27 @@ let myDeck = null;
 let newDeck = document.querySelector("#newDeck");
 
 newDeck.addEventListener("click", () => {
-  myDeck = new Deck(); // creates a new deck object
-  myDeck.name = document.querySelector("#deckName").value; // sets name of the deck to the given input from the user
   let deckDisplay = document.querySelector("#displayDecks"); //grabs the p tag
-  if (myDeck.name != "" && deckDisplay.childElementCount == 0) {
-    let deckName = myDeck.name;
+  if (deckDisplay.childElementCount != 0) {
+    var result = confirm("You cannot create more than one deck. Click 'ok' to confirm that you'd like to delete this deck and create a new one.");
+    console.log(result)
+    if (!result) {
+      return;
+    }
+  }
+  myDeckName = document.querySelector("#deckName").value; // sets name of the deck to the given input from the user
+  if (myDeckName != "") {
+    if (deckDisplay.childElementCount != 0) {
+      deckDisplay.removeChild(deckDisplay.firstChild)
+    }
+    myDeck = new Deck(); // creates a new deck object
+    let deckName = myDeckName;
     deckDisplay.innerHTML = "";
     let header = document.querySelector("#study");
     header.innerHTML = "You are currently studying " + deckName + "."; //changes the header to list the appropriate deck and which card is being looked at
     let newDeckDiv = document.createElement("div");
     let newDeckDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
-    newDeckDisp.setAttribute("id", "deckID");
+    //newDeckDisp.setAttribute("id", "deckID");
     newDeckDisp.innerHTML = deckName;
     newDeckDiv.classList.add("deck");
     newDeckDisp.classList.add("deckDisp");
@@ -27,11 +37,7 @@ newDeck.addEventListener("click", () => {
     deckDisplay.appendChild(newDeckDiv);
     let card = document.getElementById("createCard");
     card.style.paddingTop = "225pt";
-  } else if (deckDisplay.childElementCount != 0) {
-    alert(
-      "You cannot create more than one deck. Reload the page to make a new deck."
-    );
-  }
+  } 
 });
 
 let nextButton = document.querySelector("#button02");
@@ -39,9 +45,25 @@ nextButton.addEventListener("click", function () {
   showNextStudyCard();
 });
 
-let backButton = document.querySelector('#button01');
-backButton.addEventListener('click', function() {
+let backButton = document.querySelector("#button01");
+backButton.addEventListener("click", function () {
   showLastStudyCard();
+});
+
+// SENDS CODE INTO MYSTERIOUS NEVER-ENDING LOOP
+let shuffleButton = document.querySelector('#shuffle');
+ shuffleButton.addEventListener('click', function() {
+  console.log("shuffling")
+   shuffleCards();
+ });
+
+// FOR BOTH SHUFFLE AND RESET, NEED ALERT FOR WHEN THERE'S NOTHING TO STUDY
+
+// ALSO DOESN'T WORK?
+let resetButton = document.querySelector("#reset");
+resetButton.addEventListener("click", function () {
+  console.log("resetting");
+  resetDeck();
 });
 
 //study session card flip
@@ -75,10 +97,28 @@ buttonAdd.addEventListener("click", function () {
 
     displayCards();
     if (myDeck.cards.length === 1) {
-      showNextStudyCard()
+      showNextStudyCard();
     }
   }
 });
+
+function displayCards() {
+  let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
+  while (cardDisplay.firstChild) {
+    cardDisplay.removeChild(cardDisplay.firstChild);
+  }
+  for (let i = 0; i < myDeck.cards.length; i++) {
+    let cardName = myDeck.cards[i].getFrontText();
+    let newCardDiv = document.createElement("div");
+    let newCardDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
+    newCardDisp.setAttribute("id", "cardID");
+    newCardDisp.innerHTML = cardName;
+    newCardDiv.classList.add("card");
+    newCardDisp.classList.add("cardDisp");
+    newCardDiv.appendChild(newCardDisp);
+    cardDisplay.appendChild(newCardDiv);
+  }
+}
 
 function showNextStudyCard() {
   let currCard = myDeck.showNextCard();
@@ -102,26 +142,19 @@ function showLastStudyCard() {
     frontOfCard.innerHTML = currCard.getFrontText();
     backOfCard.innerHTML = currCard.getBackText();
   } else {
-    studyDisplay.innerHTML = "You have reached the beginning of the deck. You cannot go back farther!"; //TODO how to reset the page
+    studyDisplay.innerHTML =
+      "You have reached the beginning of the deck. You cannot go back farther!"; //TODO how to reset the page
   }
 }
 
-function displayCards() {
-  let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
-  while (cardDisplay.firstChild) {
-    cardDisplay.removeChild(cardDisplay.firstChild);
-  }
-  for (let i = 0; i < myDeck.cards.length; i++) {
-    let cardName = myDeck.cards[i].getFrontText();
-    let newCardDiv = document.createElement("div");
-    let newCardDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
-    newCardDisp.setAttribute("id", "cardID");
-    newCardDisp.innerHTML = cardName;
-    newCardDiv.classList.add("card");
-    newCardDisp.classList.add("cardDisp");
-    newCardDiv.appendChild(newCardDisp);
-    cardDisplay.appendChild(newCardDiv);
-  }
+function shuffleCards() {
+  myDeck.shuffle();
+  showNextStudyCard();
+}
+
+function resetDeck() {
+  myDeck.studyWholeDeckAgain();
+  showNextStudyCard();
 }
 
 //displays the cards in the deck for the user to scroll through
