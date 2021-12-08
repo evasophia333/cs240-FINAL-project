@@ -51,20 +51,20 @@ backButton.addEventListener("click", function () {
 });
 
 // SENDS CODE INTO MYSTERIOUS NEVER-ENDING LOOP
-let shuffleButton = document.querySelector('#shuffle');
- shuffleButton.addEventListener('click', function() {
-  console.log("shuffling")
-   shuffleCards();
- });
+// let shuffleButton = document.querySelector('#shuffle');
+//  shuffleButton.addEventListener('click', function() {
+//   console.log("shuffling")
+//    shuffleCards();
+//  });
 
 // FOR BOTH SHUFFLE AND RESET, NEED ALERT FOR WHEN THERE'S NOTHING TO STUDY
 
 // ALSO DOESN'T WORK?
-let resetButton = document.querySelector("#reset");
-resetButton.addEventListener("click", function () {
-  console.log("resetting");
-  resetDeck();
-});
+// let resetButton = document.querySelector("#reset");
+// resetButton.addEventListener("click", function () {
+//   console.log("resetting");
+//   resetDeck();
+// });
 
 //study session card flip
 var cardVar = document.querySelector(".card");
@@ -79,17 +79,22 @@ CREATE CARD EVENT LISTENERS!!!!!!!!
 let currentCardIndex = 0;
 
 var buttonAdd = document.querySelector("#newCardButton");
+let frontText = document.querySelector("#frontText");
+let backText = document.querySelector("#backText");
 buttonAdd.addEventListener("click", function () {
+  console.log(frontText.value);
+  console.log(backText.value);
   if (myDeck == null) {
     alert("unable to make cards without a deck! Please make a deck first.");
   } else {
     let newCard = new card(currentCardIndex);
+    console.log(newCard);
     newCard.addFrontText(frontText.value);
     newCard.addBackText(backText.value); //we need to add the card to the deck at somepoint: deck.addCard(Card)
-    // console.log(newCard.geBackText());
-    // console.log(newCard.getFrontText());
-    // frontOfCard.innerHTML = newCard.getFrontText();
-    // backOfCard.innerHTML = newCard.geBackText();
+    console.log(newCard.frontText);
+    console.log(newCard.backText);
+    frontOfCard.innerHTML = newCard.frontText;
+    backOfCard.innerHTML = newCard.backText;
     //cardList.push(newCard);
     currentCardIndex++;
     //console.log(cardList);
