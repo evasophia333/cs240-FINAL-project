@@ -1,52 +1,55 @@
 <!DOCTYPE html>
-<html lang='en'>
-
-<head>
-    <meta charset='UTF-8' />
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
     <title>New Deck</title>
-    <link rel='stylesheet' href="assets/styles.css" />
-</head>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
 
-<body>
+  <body>
     <!--Allows user to study the currently made deck-->
     <h1 id="study">Welcome to FLASHY, let the studying begin!</h1>
-    <p>Click 'Shuffle' to shuffle your remaining unstudied cards. Click 'Reset' to study the whole deck again.</p>
-    <button id='shuffle'>Shuffle</button>
-    <button id='reset'>Reset</button>
+    <p>
+      Click 'Shuffle' to shuffle your remaining unstudied cards. Click 'Reset'
+      to study the whole deck again.
+    </p>
+    <button id="shuffle">Shuffle</button>
+    <button id="reset">Reset</button>
     <!--STUDY-->
-    <h1>Study Below: </h1>
-    <div id='studyContent'>
-        <div id='button01'><button>Back</button></div>
-        <div class='card' id='studyItem'>
-            <div id='frontOfCard' class="card__face card__face--front">**Add Front Text**</div>
-            <div id='backOfCard' class="card__face card__face--back">**Add Back Text**</div>
+    <h1>Study Below:</h1>
+    <div id="studyContent">
+      <div id="button01"><button>Back</button></div>
+      <div class="card" id="studyItem">
+        <div id="frontOfCard" class="card__face card__face--front">
+          **Add Front Text**
         </div>
-        <div id='button02'><button>Next</button></div>
+        <div id="backOfCard" class="card__face card__face--back">
+          **Add Back Text**
+        </div>
+      </div>
+      <div id="button02"><button>Next</button></div>
     </div>
     <!--ADD A inner.HTML here that changes this when a deck and card has been created-->
     <!--CREATES A NEW DECK-->
     <h1>Create a Deck Below:</h1>
-    <input id="deckName" placeholder="Enter Deck Name:" type='text' />
+    <input id="deckName" placeholder="Enter Deck Name:" type="text" />
     <button id="newDeck">Create Deck</button>
-    <h2 id='deckDisplay'>Your Deck:</h2>
+    <h2 id="deckDisplay">Your Deck:</h2>
     <p id="displayDecks">You havent created a deck yet!</p>
-    <div id='spaceDiv'></div>
+    <div id="spaceDiv"></div>
 
     <!--CREATES A NEW CARD-->
-    <h1 id='createCard' class='header'>Create a New Card Below: </h1>
+    <h1 id="createCard" class="header">Create a New Card Below:</h1>
     <h2>Add text below to the front and back of the card:</h2>
-    <input id="frontText" placeholder="Enter Front Card Text:">
-    <input id="backText" placeholder="Enter Back Card Text:">
+    <input id="frontText" placeholder="Enter Front Card Text:" />
+    <input id="backText" placeholder="Enter Back Card Text:" />
     <button id="newCardButton">Add Back & Front Text</button>
-    <h2 id='cardDisplay'>Cards:</h2>
+    <h2 id="cardDisplay">Cards:</h2>
     <p id="displayCards">Your deck has no cards yet!</p>
-    <div id='spaceDiv'></div>
-
-    
+    <div id="spaceDiv"></div>
 
     <script src="deck.js"></script>
     <script src="card.js"></script>
     <script src="homePage.js"></script>
-</body>
-
+  </body>
 </html>

@@ -66,6 +66,7 @@ cardVar.addEventListener("click", function () {
   cardVar.classList.toggle("is-flipped");
 });
 
+
 /* 
 CREATE CARD EVENT LISTENERS!!!!!!!!
  Track current cards */
@@ -123,7 +124,9 @@ function showNextStudyCard() {
     frontOfCard.innerHTML = currCard.getFrontText();
     backOfCard.innerHTML = currCard.getBackText();
   } else {
-    studyDisplay.innerHTML = "You have studied the whole deck!"; //TODO how to reset the page
+    document.querySelector("#frontOfCard").innerHTML = "End of deck!";
+    document.querySelector("#backOfCard").innerHTML = "End of deck!";
+    //studyDisplay.innerHTML = "You have studied the whole deck!"; //TODO how to reset the page
   }
 }
 
@@ -136,8 +139,9 @@ function showLastStudyCard() {
     frontOfCard.innerHTML = currCard.getFrontText();
     backOfCard.innerHTML = currCard.getBackText();
   } else {
-    studyDisplay.innerHTML =
-      "You have reached the beginning of the deck. You cannot go back farther!"; //TODO how to reset the page
+    document.querySelector("#frontOfCard").innerHTML = "Beginning of deck!";
+    document.querySelector("#backOfCard").innerHTML = "Beginning of deck!";
+    //studyDisplay.innerHTML = "You have reached the beginning of the deck. You cannot go back farther!"; //TODO how to reset the page
   }
 }
 
