@@ -66,6 +66,7 @@ cardVar.addEventListener("click", function () {
   cardVar.classList.toggle("is-flipped");
 });
 
+
 /* 
 CREATE CARD EVENT LISTENERS!!!!!!!!
  Track current cards */
