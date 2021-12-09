@@ -13,31 +13,34 @@ newDeck.addEventListener("click", () => {
   if (deckDisplay.childElementCount != 0) {
     var result = confirm("You cannot create more than one deck. Click 'ok' to confirm that you'd like to delete this deck and create a new one.");
     if (result) {
+      myDeck = null;
+      console.log(myDeck)
       let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
-      let studyContent = document.querySelector("#studyContent");
+      let studyItem = document.querySelector("#studyItem");
+      console.log(studyItem.firstChild);
       while (cardDisplay.firstChild) {
         cardDisplay.removeChild(cardDisplay.firstChild);
       }
-      while (studyContent.firstChild) {
-        studyContent.removeChild(studyContent.firstChild);
+      while (studyItem.firstChild) {
+        studyItem.removeChild(studyItem.firstChild);
       }
-      console.log(studyContent)
-      let studyDiv = document.createElement('div');
-      studyDiv.classList.add('card');
-      studyDiv.setAttribute('id', 'studyItem');
-      studyContent.appendChild(studyDiv);
+      //console.log(studyContent)
+      // let studyDiv = document.createElement('div');
+      // studyDiv.classList.add('card');
+      // studyDiv.setAttribute('id', 'studyItem');
+      // studyContent.appendChild(studyDiv);
       let frontDiv = document.createElement('div');
       frontDiv.classList.add("card__face");
       frontDiv.classList.add("card__face--front");
       frontDiv.setAttribute('id','frontOfCard');
       frontDiv.innerHTML = "**Add Front Text**";
-      studyDiv.appendChild(frontDiv);
+      studyItem.appendChild(frontDiv);
       let backDiv = document.createElement('div');
       backDiv.classList.add("card__face");
       backDiv.classList.add("card__face--back");
       backDiv.setAttribute('id','backOfCard');
       backDiv.innerHTML = "**Add Back Text**";
-      studyDiv.appendChild(backDiv);
+      studyItem.appendChild(backDiv);
     }
     else {
       return;
@@ -55,7 +58,6 @@ newDeck.addEventListener("click", () => {
     header.innerHTML = "You are currently studying " + deckName + "."; //changes the header to list the appropriate deck and which card is being looked at
     let newDeckDiv = document.createElement("div");
     let newDeckDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
-    //newDeckDisp.setAttribute("id", "deckID");
     newDeckDisp.innerHTML = deckName;
     newDeckDiv.classList.add("deck");
     newDeckDisp.classList.add("deckDisp");
@@ -77,36 +79,20 @@ backButton.addEventListener("click", function () {
 });
 
 // SENDS CODE INTO MYSTERIOUS NEVER-ENDING LOOP
-<<<<<<< HEAD
 let shuffleButton = document.querySelector('#shuffle');
  shuffleButton.addEventListener('click', function() {
   console.log("shuffling")
    shuffleCards();
  });
-=======
-// let shuffleButton = document.querySelector('#shuffle');
-//  shuffleButton.addEventListener('click', function() {
-//   console.log("shuffling")
-//    shuffleCards();
-//  });
->>>>>>> claire
 
 // FOR BOTH SHUFFLE AND RESET, NEED ALERT FOR WHEN THERE'S NOTHING TO STUDY
 
 // ALSO DOESN'T WORK?
-<<<<<<< HEAD
 let resetButton = document.querySelector("#reset");
 resetButton.addEventListener("click", function () {
   console.log("resetting");
   resetDeck();
 });
-=======
-// let resetButton = document.querySelector("#reset");
-// resetButton.addEventListener("click", function () {
-//   console.log("resetting");
-//   resetDeck();
-// });
->>>>>>> claire
 
 //study session card flip
 var cardVar = document.querySelector(".card");
@@ -140,16 +126,12 @@ buttonAdd.addEventListener("click", function () {
     displayCards();
     if (myDeck.cards.length === 1) {
       showNextStudyCard();
-<<<<<<< HEAD
-    }
-=======
 }}});
 
 function displayCards() {
   let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
   while (cardDisplay.firstChild) {
     cardDisplay.removeChild(cardDisplay.firstChild);
->>>>>>> claire
   }
   for (let i = 0; i < myDeck.cards.length; i++) {
     let cardName = myDeck.cards[i].getFrontText();
@@ -184,7 +166,8 @@ function displayCards() {
 
 function showNextStudyCard() {
   let currCard = myDeck.showNextCard();
-  let studyDisplay = document.querySelector("#studyItem");
+  console.log(currCard);
+  //let studyDisplay = document.querySelector("#studyItem");
   if (currCard !== null) {
     let frontOfCard = document.querySelector("#frontOfCard");
     let backOfCard = document.querySelector("#backOfCard");
@@ -206,14 +189,9 @@ function showLastStudyCard() {
     frontOfCard.innerHTML = currCard.getFrontText();
     backOfCard.innerHTML = currCard.getBackText();
   } else {
-<<<<<<< HEAD
     document.querySelector("#frontOfCard").innerHTML = "Beginning of deck!";
     document.querySelector("#backOfCard").innerHTML = "Beginning of deck!";
     //studyDisplay.innerHTML = "You have reached the beginning of the deck. You cannot go back farther!"; //TODO how to reset the page
-=======
-    studyDisplay.innerHTML =
-      "You have reached the beginning of the deck. You cannot go back farther!"; //TODO how to reset the page
->>>>>>> claire
   }
 }
 

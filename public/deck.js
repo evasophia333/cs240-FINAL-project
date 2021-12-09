@@ -99,6 +99,10 @@ class Deck {
     this.seenCards = [];
     this.unseenCards = this.cards;
   }
+
+  resetCards() {
+    this.cards = [];
+  }
 }
 
 // // When pressed, button will bring user back to homepage
