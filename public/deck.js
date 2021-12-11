@@ -58,17 +58,15 @@ class Deck {
   }
 
   showLastCard() {
-    let studyDisplay = document.querySelector("#studyItem");
+    //let studyDisplay = document.querySelector("#studyItem");
     if (
-      this.seenCards.length > 1 &&
-      studyDisplay.innerHTML != "You have studied the whole deck!"
+      this.seenCards.length >= 1
+      //&&studyDisplay.innerHTML != "You have studied the whole deck!"
     ) {
-      let currCard = this.seenCards[0];
-      if (this.seenCards.length > 2) {
-        currCard = this.seenCards[this.seenCards.length - 2];
-      }
-      this.unseenCards.unshift(this.seenCards.pop());
-      return currCard;
+      let currCard = this.seenCards.pop();
+      this.unseenCards.unshift(currCard);
+
+      return this.seenCards.pop();
     } else {
       return null;
     }
