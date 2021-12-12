@@ -26,6 +26,8 @@ body {
   padding-bottom: 200pt;
 }
 
+
+
 .card.is-flipped {
   transform: rotateY(180deg);
 }
@@ -104,18 +106,42 @@ body {
   margin: 20px;
 }
 
-.cardDisp {
+
+#leftWrapper {
+  float:left;
+  width: 32%;
+  height: 650px;
+}
+#leftTop {
   width: 200px;
-  height: 260px;
+  height: 130px;
   background-color: darksalmon;
   font-size: 15pt;
   color: white;
   padding: 10pt;
   text-align: center;
   font-weight: bold;
-  border-radius: 25px;
+  border-radius: 25px 25px 0px 0px;
   font-size: 25px;
+  float:left;
+  overflow: scroll;
 }
+
+#leftBottom {
+  width: 200px;
+  height: 130px;
+  background-color: rgb(182, 182, 182);
+  font-size: 15pt;
+  color: white;
+  padding: 10pt;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 0px 0px 25px 25px;
+  font-size: 25px;
+  float:left;
+  overflow: scroll;
+}
+
 
 #spaceDiv {
   height: 50px;

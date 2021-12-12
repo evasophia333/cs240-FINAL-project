@@ -101,6 +101,7 @@ cardVar.addEventListener("click", function () {
 });
 
 
+
 /* 
 CREATE CARD EVENT LISTENERS!!!!!!!!
  Track current cards */
@@ -141,19 +142,15 @@ function displayCards() {
     let backText = myDeck.cards[i].getBackText();
     let newCardDiv = document.createElement("div");
     let newCardDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
-    let newCardDispBack = document.createElement("div");
+    let newCardDispF = document.createElement("div");
     cardDisplay.appendChild(newCardDiv);
-    newCardDiv.appendChild(newCardDispBack);
+    newCardDiv.appendChild(newCardDispF);
     newCardDiv.appendChild(newCardDisp);
-    newCardDisp.setAttribute("id", "cardID");
-    newCardDisp.setAttribute("id", "cardID");
-    newCardDisp.innerHTML = cardName;
-    newCardDispBack.innerHTML = backText;
-    newCardDiv.classList.add("card");
-    newCardDisp.classList.add("cardDisp");
-    newCardDisp.classList.add("card__face");
-    newCardDispBack.classList.add("card__face--back");
-    newCardDispBack.classList.add("card__face");
+    newCardDisp.setAttribute("id", "leftBottom");
+    newCardDispF.setAttribute("id", "leftTop");
+    newCardDiv.setAttribute("id", "leftWrapper");
+    newCardDisp.innerHTML = backText;
+    newCardDispF.innerHTML = cardName;
   }
 }
 
