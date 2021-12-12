@@ -3,10 +3,11 @@
  */
 class Deck {
   constructor() {
-    this.seenCards = []; //holds the flashcards that the user has already seen
-    this.unseenCards = []; //holds the flashcards that the user has not seen yet
+    //this.seenCards = []; //holds the flashcards that the user has already seen
+    //this.unseenCards = []; //holds the flashcards that the user has not seen yet
     this.name = ""; //stores the name of the deck created
     this.cards = []; //stores the cards in the deck
+    this.pointer = 0;
   }
 
   /**
@@ -16,7 +17,6 @@ class Deck {
    */
   addCardToDeck(Card) {
     this.cards.push(Card);
-    this.unseenCards.push(Card);
   }
 
   /**
@@ -44,33 +44,23 @@ class Deck {
    * @returns null if there are no more unseen cards to study
    */
 
-  showNextCard() {
-    if (this.unseenCards.length > 0) {
-      //if there is an unseen card
-      console.log(this.unseenCards[0].frontText);
-      let currCard = this.unseenCards[0];
-      this.unseenCards.shift(); //removes the first element of the array
-      this.seenCards.push(currCard); //adds card to end of seen array
+  getCurrCard() {
+    if (this.pointer < this.cards.length && this.pointer > -1) {
+      let currCard = this.cards[this.pointer];
       return currCard;
     } else {
-      return null; //at the end of the deck!!!!
+      return null; //at the end or beginning of the deck!!!!
     }
   }
 
-  showLastCard() {
-    let studyDisplay = document.querySelector("#studyItem");
-    if (
-      this.seenCards.length > 1 &&
-      studyDisplay.innerHTML != "You have studied the whole deck!"
-    ) {
-      let currCard = this.seenCards[0];
-      if (this.seenCards.length > 2) {
-        currCard = this.seenCards[this.seenCards.length - 2];
-      }
-      this.unseenCards.unshift(this.seenCards.pop());
-      return currCard;
-    } else {
-      return null;
+  movePointerBack() {
+    if (!(this.pointer < 1)) {
+      this.pointer--;
+    }
+  }
+  movePointerForward() {
+    if (!(this.pointer > this.cards.length - 1)) {
+      this.pointer++;
     }
   }
 
@@ -80,11 +70,12 @@ class Deck {
    * @returns random Card in the deck
    */
   shuffle() {
-    for (let i = this.unseenCards.length; i > 0; i++) {
-      let j = Math.floor(Math.random() * i);
-      let card1 = this.unseenCards[i];
-      this.unseenCards[i] = this.unseenCards[j];
-      this.unseenCards[j] = card1;
+    for (let i = this.pointer; i < this.cards.length; i++) {
+      let max = this.cards.length - this.pointer;
+      let j = Math.floor(Math.random() * max) + this.pointer;
+      let card1 = this.cards[i];
+      this.cards[i] = this.cards[j];
+      this.cards[j] = card1;
     }
   }
 
@@ -95,9 +86,8 @@ class Deck {
   getDeckName() {
     return this.name;
   }
-  studyWholeDeckAgain() {
-    this.seenCards = [];
-    this.unseenCards = this.cards;
+  movePointerToBeginning() {
+    this.pointer = 0;
   }
 
   resetCards() {
