@@ -32,13 +32,13 @@ newDeck.addEventListener("click", () => {
       let frontDiv = document.createElement('div');
       frontDiv.classList.add("card__face");
       frontDiv.classList.add("card__face--front");
-      frontDiv.setAttribute('id','frontOfCard');
+      frontDiv.setAttribute('id', 'frontOfCard');
       frontDiv.innerHTML = "**Add Front Text**";
       studyItem.appendChild(frontDiv);
       let backDiv = document.createElement('div');
       backDiv.classList.add("card__face");
       backDiv.classList.add("card__face--back");
-      backDiv.setAttribute('id','backOfCard');
+      backDiv.setAttribute('id', 'backOfCard');
       backDiv.innerHTML = "**Add Back Text**";
       studyItem.appendChild(backDiv);
     }
@@ -65,7 +65,7 @@ newDeck.addEventListener("click", () => {
     deckDisplay.appendChild(newDeckDiv);
     let card = document.getElementById("createCard");
     card.style.paddingTop = "225pt";
-  } 
+  }
 });
 
 let nextButton = document.querySelector("#button02");
@@ -80,10 +80,10 @@ backButton.addEventListener("click", function () {
 
 // SENDS CODE INTO MYSTERIOUS NEVER-ENDING LOOP
 let shuffleButton = document.querySelector('#shuffle');
- shuffleButton.addEventListener('click', function() {
+shuffleButton.addEventListener('click', function () {
   console.log("shuffling")
-   shuffleCards();
- });
+  shuffleCards();
+});
 
 // FOR BOTH SHUFFLE AND RESET, NEED ALERT FOR WHEN THERE'S NOTHING TO STUDY
 
@@ -126,7 +126,10 @@ buttonAdd.addEventListener("click", function () {
     displayCards();
     if (myDeck.cards.length === 1) {
       showNextStudyCard();
-}}});
+    }
+  }
+});
+
 
 function displayCards() {
   let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
@@ -135,32 +138,22 @@ function displayCards() {
   }
   for (let i = 0; i < myDeck.cards.length; i++) {
     let cardName = myDeck.cards[i].getFrontText();
+    let backText = myDeck.cards[i].getBackText();
     let newCardDiv = document.createElement("div");
     let newCardDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
+    let newCardDispBack = document.createElement("div");
+    cardDisplay.appendChild(newCardDiv);
+    newCardDiv.appendChild(newCardDispBack);
+    newCardDiv.appendChild(newCardDisp);
+    newCardDisp.setAttribute("id", "cardID");
     newCardDisp.setAttribute("id", "cardID");
     newCardDisp.innerHTML = cardName;
+    newCardDispBack.innerHTML = backText;
     newCardDiv.classList.add("card");
     newCardDisp.classList.add("cardDisp");
-    newCardDiv.appendChild(newCardDisp);
-    cardDisplay.appendChild(newCardDiv);
-  }
-}
-
-function displayCards() {
-  let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
-  while (cardDisplay.firstChild) {
-    cardDisplay.removeChild(cardDisplay.firstChild);
-  }
-  for (let i = 0; i < myDeck.cards.length; i++) {
-    let cardName = myDeck.cards[i].getFrontText();
-    let newCardDiv = document.createElement("div");
-    let newCardDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
-    newCardDisp.setAttribute("id", "cardID");
-    newCardDisp.innerHTML = cardName;
-    newCardDiv.classList.add("card");
-    newCardDisp.classList.add("cardDisp");
-    newCardDiv.appendChild(newCardDisp);
-    cardDisplay.appendChild(newCardDiv);
+    newCardDisp.classList.add("card__face");
+    newCardDispBack.classList.add("card__face--back");
+    newCardDispBack.classList.add("card__face");
   }
 }
 
