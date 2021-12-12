@@ -26,8 +26,6 @@ body {
   padding-bottom: 200pt;
 }
 
-
-
 .card.is-flipped {
   transform: rotateY(180deg);
 }
@@ -52,6 +50,7 @@ body {
   height: 260px;
   border-radius: 25px;
   padding: 10pt;
+  line-height: 260px;
 }
 
 .card__face--back {
@@ -62,6 +61,7 @@ body {
   height: 260px;
   border-radius: 25px;
   padding: 10pt;
+  line-height: 260px;
 }
 
 #newDeck,
@@ -106,9 +106,8 @@ body {
   margin: 20px;
 }
 
-
 #leftWrapper {
-  float:left;
+  float: left;
   width: 32%;
   height: 650px;
 }
@@ -123,7 +122,7 @@ body {
   font-weight: bold;
   border-radius: 25px 25px 0px 0px;
   font-size: 25px;
-  float:left;
+  float: left;
   overflow: scroll;
   margin-right: 10pt;
 }
@@ -139,10 +138,9 @@ body {
   font-weight: bold;
   border-radius: 0px 0px 25px 25px;
   font-size: 25px;
-  float:left;
+  float: left;
   overflow: scroll;
 }
-
 
 #spaceDiv {
   height: 50px;
