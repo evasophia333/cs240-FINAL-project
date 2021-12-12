@@ -66,6 +66,9 @@ newDeck.addEventListener("click", () => {
     let card = document.getElementById("createCard");
     card.style.paddingTop = "225pt";
   }
+  document.getElementById('deckName').value = "";
+
+
 });
 
 let nextButton = document.querySelector("#button02");
@@ -112,6 +115,8 @@ var buttonAdd = document.querySelector("#newCardButton");
 let frontText = document.querySelector("#frontText");
 let backText = document.querySelector("#backText");
 buttonAdd.addEventListener("click", function () {
+  document.getElementById('frontText').value = "";
+  document.getElementById('backText').value = "";
   if (myDeck == null) {
     alert("unable to make cards without a deck! Please make a deck first.");
   } else {
