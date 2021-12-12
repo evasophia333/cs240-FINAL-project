@@ -67,7 +67,6 @@ newDeck.addEventListener("click", () => {
 let nextButton = document.querySelector("#button02");
 nextButton.addEventListener("click", function () {
   myDeck.movePointerForward();
-  console.log(myDeck.pointer);
   showCard();
 });
 
@@ -156,8 +155,18 @@ function showCard() {
     frontOfCard.innerHTML = currCard.getFrontText();
     backOfCard.innerHTML = currCard.getBackText();
   } else {
-    document.querySelector("#frontOfCard").innerHTML = "End of deck!";
-    document.querySelector("#backOfCard").innerHTML = "End of deck!";
+    var result = confirm(
+      "You have studied all the cards in your deck. Click 'ok' to restart studying from the beginning and cancel to stay on the last card. "
+    );
+    if (result) {
+      myDeck.movePointerToBeginning();
+      showCard();
+    } else {
+      myDeck.movePointerBack();
+      showCard();
+    }
+    //document.querySelector("#frontOfCard").innerHTML = "End of deck!";
+    //document.querySelector("#backOfCard").innerHTML = "End of deck!";
     //studyDisplay.innerHTML = "You have studied the whole deck!"; //TODO how to reset the page
   }
 }
