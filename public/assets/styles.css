@@ -125,6 +125,7 @@ body {
   font-size: 25px;
   float:left;
   overflow: scroll;
+  margin-right: 10pt;
 }
 
 #leftBottom {
