@@ -107,17 +107,21 @@ buttonAdd.addEventListener("click", function () {
     alert("unable to make cards without a deck! Please make a deck first.");
   } else {
     let newCard = new card(currentCardIndex);
-    newCard.addFrontText(frontText.value);
-    newCard.addBackText(backText.value);
-    //frontOfCard.innerHTML = newCard.frontText;
-    //backOfCard.innerHTML = newCard.backText;
+    if (frontText.value == '' || backText.value == "") {
+      alert("Please add front and back text");
+    } else {
+      newCard.addFrontText(frontText.value);
+      newCard.addBackText(backText.value);
+      //frontOfCard.innerHTML = newCard.frontText;
+      //backOfCard.innerHTML = newCard.backText;
 
-    currentCardIndex++;
-    myDeck.addCardToDeck(newCard);
+      currentCardIndex++;
+      myDeck.addCardToDeck(newCard);
 
-    displayCards();
-    if (myDeck.cards.length === 1) {
-      showCard();
+      displayCards();
+      if (myDeck.cards.length === 1) {
+        showCard();
+      }
     }
   }
   //document.getElementById("frontText").value = "";

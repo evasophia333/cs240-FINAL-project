@@ -15,15 +15,16 @@ body {
 }
 
 .card {
-  width: 13%;
-  height: 13%;
+  width: 190px;
+  height: 10%;
   transition: all 0.75s ease;
   /*transition: transform 1s;*/
   transform-style: preserve-3d;
   cursor: pointer;
   vertical-align: middle;
-  padding: 10pt;
+  padding-right: 30pt;
   padding-bottom: 200pt;
+  padding-left: 10pt;
 }
 
 .card.is-flipped {
