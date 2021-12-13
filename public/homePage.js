@@ -1,7 +1,6 @@
 /* 
 Global variable: deck!!!!! stores the current deck used
  */
-
 let myDeck = null;
 
 // NEW DECK EVENT LISTENER

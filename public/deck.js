@@ -1,18 +1,15 @@
 /**
- * Create a deck and instantiates corresponding fields
+ * Creates a deck and instantiates corresponding fields
  */
 class Deck {
   constructor() {
-    //this.seenCards = []; //holds the flashcards that the user has already seen
-    //this.unseenCards = []; //holds the flashcards that the user has not seen yet
     this.name = ""; //stores the name of the deck created
     this.cards = []; //stores the cards in the deck
-    this.pointer = 0;
+    this.pointer = 0; //tracks our current position in the deck
   }
 
   /**
-   * Takes a given card and will add it to the deck. Also places
-   * the card into the unseen set of cards
+   * Takes a given card and adds it to the deck.
    * @param {Card object} Card
    */
   addCardToDeck(Card) {
@@ -38,42 +35,39 @@ class Deck {
 
   /**
    * Calling this method will return the next card in the deck in
-   * the currentorder. Moves this card into the seen category
-   * and removes from the unseen category.
+   * the currentorder.
    * @returns current card
    * @returns null if there are no more unseen cards to study
    */
 
   getCurrCard() {
-    if (this.pointer < this.cards.length && this.pointer > -1) {
-      let currCard = this.cards[this.pointer];
+    if (this.pointer < this.cards.length && this.pointer > -1) { //if we're within the bounds of the deck
+      let currCard = this.cards[this.pointer]; //return the card we're pointing at
       return currCard;
     } else {
       return null; //at the end or beginning of the deck!!!!
     }
   }
 
-  movePointerBack() {
+  movePointerBack() { //move the pointer back, therefore moving the user back in the deck
     if (!(this.pointer < 1)) {
       this.pointer--;
     }
   }
-  movePointerForward() {
+  movePointerForward() { //move the pointer forward, therefore moving the user forward in the deck
     if (!(this.pointer > this.cards.length - 1)) {
       this.pointer++;
     }
   }
 
   /**
-   * Creates two new arrays to hold flashcards that have been seen or not and takes a random flash card from the deck
-   * shows it to the user and and adds it to the appropriate array.
-   * @returns random Card in the deck
+   * Randomizes all cards in the deck between our current card and the end of the deck
    */
   shuffle() {
-    for (let i = this.pointer; i < this.cards.length; i++) {
+    for (let i = this.pointer; i < this.cards.length; i++) { //for each card from our current card to the end of the deck...
       let max = this.cards.length - this.pointer;
-      let j = Math.floor(Math.random() * max) + this.pointer;
-      let card1 = this.cards[i];
+      let j = Math.floor(Math.random() * max) + this.pointer; //randomly...
+      let card1 = this.cards[i]; //reasign
       this.cards[i] = this.cards[j];
       this.cards[j] = card1;
     }
@@ -86,58 +80,12 @@ class Deck {
   getDeckName() {
     return this.name;
   }
-  movePointerToBeginning() {
+
+  movePointerToBeginning() { //moves the pointer to the beginning of the deck
     this.pointer = 0;
   }
 
-  resetCards() {
+  resetCards() { //resets deck to be empty
     this.cards = [];
   }
 }
-
-// // When pressed, button will bring user back to homepage
-// let homePage = document.querySelector('button[id="homePage"]');
-// homePage.addEventListener("click", () => {
-//   window.location.href = "homePage.html";
-// });
-
-// Creates a new deck and adds it to a list for the user to keep track of their decks
-// let newDeck = document.querySelector("#newDeck");
-// newDeck.addEventListener("click", () => {
-//   let deck = new Deck(); // creates a new deck object
-//   deck.name = document.querySelector("#deckName").value; // sets name of the deck to the given input from the user
-//   if (deck.name != "") {
-//     let deckName = deck.name;
-//     // Trying to get the input field to clear on button click
-//     // deck.name = '';
-//     // deck.placeholder = "Enter Deck Name:";
-//     // deck.reset;
-//     // console.log(deck.name)
-//     // console.log(deck.placeholder)
-//     let deckDisplay = document.querySelector("#displayDecks"); //grabs the p tag
-//     let newDeckDiv = document.createElement("div");
-//     let newDeckDisp = document.createElement("div"); // I needed two div items, one within the other to get the display to work
-//     newDeckDisp.setAttribute("id", "deckID");
-//     newDeckDisp.innerHTML = deckName;
-//     newDeckDiv.classList.add("deck");
-//     newDeckDisp.classList.add("deckDisp");
-//     newDeckDiv.appendChild(newDeckDisp);
-//     deckDisplay.appendChild(newDeckDiv);
-
-//     newDeckDisp.addEventListener("click", () => {
-//       window.location.href = "viewCards.html";
-//     });
-//   }
-//});
-
-//old shuffle method
-// const randomCardID = Math.floor(Math.random() * this.unseenCards.length); //grabs a random ID from the deck of flashcards
-// const randomCard = this.unseenCards[randomCardID];
-// if (!seenCards.Contains(randomCard)) {
-//   seenCards.push(randomCard);
-//   this.cards.splice(randomCardID, 1);
-// } else {
-//   unseenCards.push(randomCard);
-//   this.cards.splice(randomCardID, 1);
-// }
-// return randomCardID;
