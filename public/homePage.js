@@ -163,11 +163,15 @@ function showCard() {
       "You have studied all the cards in your deck. Click 'ok' to restart studying from the beginning and cancel to stay on the last card. "
     );
     if (result) { // if they say 'ok'...
-      myDeck.movePointerToBeginning(); // move them to the beginning of the deck
-      showCard();
+      if (myDeck.cards.length != 0) { // if the deck isn't empty...
+        myDeck.movePointerToBeginning(); // move them to the beginning of the deck
+        showCard();
+      }
     } else { // otherwise...
-      myDeck.movePointerBack(); // leave them at the last card
-      showCard();
+      if (myDeck.cards.length != 0) { // if the deck isn't empty...
+         myDeck.movePointerBack(); // leave them at the last card
+        showCard();
+      }
     }
   }
 }
