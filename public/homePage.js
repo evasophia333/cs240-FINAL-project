@@ -2,8 +2,8 @@
 Global variable: deck!!!!! stores the current deck used
  */
 let myDeck = null;
-let cardDisp = [];//used to hold cards in the card section for editing purposes
-let deckArray = [];//TODO
+let cardDisp = []; //used to hold cards in the card section for editing purposes
+let deckArray = []; //TODO
 
 // NEW DECK EVENT LISTENER
 //Creates a new deck and adds it to a list for the user to keep track of their decks
@@ -138,7 +138,6 @@ buttonAdd.addEventListener("click", function () {
       myDeck.addCardToDeck(newCard); // add it to the deck
       displayCards(); // show the card below the create card section
       if (myDeck.cards.length === 1) {
-        console.log(myDeck.pointer);
         showCard(); // update the study section
       }
     }
@@ -207,7 +206,10 @@ function displayCards() {
 
       let saveChan = document.querySelector("#saveChanges");
       let deleteC = document.querySelector("#deleteCard");
-
+      let cancelB = document.querySelector("#cancelEdit");
+      cancelB.addEventListener("click", function (evt) {
+        popup.classList.remove("show");
+      });
       saveChan.addEventListener("click", function (evt) {
         if (
           textF.value !== "" &&
