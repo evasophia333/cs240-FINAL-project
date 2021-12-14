@@ -236,12 +236,16 @@ deleteC.addEventListener("click", function (evt) {
   displayCards();
 });
 saveChan.addEventListener("click", function (evt) {
-  myDeck.cards[num].addFrontText(textF.value);
-  myDeck.cards[num].addBackText(textB.value);
+  if (textB.value == "" || textB.value == null || textF.value == '' || textF.value == null) {
+    alert("Please add text for the front and back of the card")
+  } else {
+    myDeck.cards[num].addFrontText(textF.value);
+    myDeck.cards[num].addBackText(textB.value);
 
-  showCard();
-  displayCards();
-  popup.classList.remove("show");
+    showCard();
+    displayCards();
+    popup.classList.remove("show");
+  }
 });
 // function to show the card we're currently studying
 function showCard() {

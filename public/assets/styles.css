@@ -162,10 +162,13 @@ body {
 }
 /* Popup container */
 .popup {
-  position: relative;
   /*left: 50%;*/
   display: inline-block;
   /*cursor: pointer;*/
+  position:absolute;
+  top: 150%;
+  left: 60%;
+  display: block;
 }
 
 /* The actual popup (appears on top) */
