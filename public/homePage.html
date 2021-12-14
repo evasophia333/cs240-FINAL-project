@@ -41,13 +41,16 @@
     <!--CREATES A NEW CARD-->
     <h1 id="createCard" class="header">Create a New Card Below:</h1>
     <h2>Add text below to the front and back of the card:</h2>
+    
     <input id="frontText" placeholder="Enter Front Card Text:" />
     <input id="backText" placeholder="Enter Back Card Text:" />
     <button id="newCardButton">Add Back & Front Text</button>
     <h2 id="cardDisplay">Cards:</h2>
     <p id="displayCards">Your deck has no cards yet!</p>
     <div id="spaceDiv"></div>
-
+    <div class="popup">
+      <span class="popuptext" id="myPopup">Popup text...</span>
+    </div>
     <script src="deck.js"></script>
     <script src="card.js"></script>
     <script src="homePage.js"></script>

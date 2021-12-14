@@ -2,6 +2,7 @@
 Global variable: deck!!!!! stores the current deck used
  */
 let myDeck = null;
+let cardDisp = [];
 
 // NEW DECK EVENT LISTENER
 //Creates a new deck and adds it to a list for the user to keep track of their decks
@@ -9,20 +10,24 @@ let newDeck = document.querySelector("#newDeck");
 
 newDeck.addEventListener("click", () => {
   let deckDisplay = document.querySelector("#displayDecks"); //grabs the p tag
-  if (deckDisplay.childElementCount != 0) { // if there is an existing deck, alert the user and ask if they'd like to make new one
+  if (deckDisplay.childElementCount != 0) {
+    // if there is an existing deck, alert the user and ask if they'd like to make new one
     var result = confirm(
       "You cannot create more than one deck. Click 'ok' to confirm that you'd like to delete this deck and create a new one."
     );
-    if (result) { // if they click ok...
+    if (result) {
+      // if they click ok...
       myDeck = null;
       let cardDisplay = document.querySelector("#displayCards"); //grabs the p tag
       let studyItem = document.querySelector("#studyItem");
 
-      while (cardDisplay.firstChild) { // remove existing cards
+      while (cardDisplay.firstChild) {
+        // remove existing cards
         cardDisplay.removeChild(cardDisplay.firstChild);
       }
       cardDisplay.innerHTML = "Your deck has no cards yet!";
-      while (studyItem.firstChild) { // remove existing study display
+      while (studyItem.firstChild) {
+        // remove existing study display
         studyItem.removeChild(studyItem.firstChild);
       }
       let frontDiv = document.createElement("div"); // create a new deck
@@ -37,13 +42,16 @@ newDeck.addEventListener("click", () => {
       backDiv.setAttribute("id", "backOfCard");
       backDiv.innerHTML = "**Add Back Text**";
       studyItem.appendChild(backDiv);
-    } else { // if they click cancel...
+    } else {
+      // if they click cancel...
       return; // do nothing
     }
   }
   let myDeckName = document.querySelector("#deckName").value; // sets name of the deck to the given input from the user
-  if (myDeckName != "") { // if the user has input a name for the new deck
-    if (deckDisplay.childElementCount != 0) { // remove existing decks just in case
+  if (myDeckName != "") {
+    // if the user has input a name for the new deck
+    if (deckDisplay.childElementCount != 0) {
+      // remove existing decks just in case
       deckDisplay.removeChild(deckDisplay.firstChild);
     }
     myDeck = new Deck(); // create a new deck object
@@ -106,14 +114,19 @@ let currentCardIndex = 0;
 var buttonAdd = document.querySelector("#newCardButton");
 let frontText = document.querySelector("#frontText");
 let backText = document.querySelector("#backText");
-buttonAdd.addEventListener("click", function () { // if the user clicks the "Add Back & Front Text" button...
-  if (myDeck == null) { // if there is no deck yet...
+buttonAdd.addEventListener("click", function () {
+  // if the user clicks the "Add Back & Front Text" button...
+  if (myDeck == null) {
+    // if there is no deck yet...
     alert("unable to make cards without a deck! Please make a deck first."); // alert the user and ask them to make one
-  } else { // if there is a deck...
+  } else {
+    // if there is a deck...
     let newCard = new card(currentCardIndex);
-    if (frontText.value == "" || backText.value == "") { // if either input box is empty...
+    if (frontText.value == "" || backText.value == "") {
+      // if either input box is empty...
       alert("Please add front and back text"); // ask the user to add text
-    } else { // if there is text to put on the cards...
+    } else {
+      // if there is text to put on the cards...
       newCard.addFrontText(frontText.value); // create a new card with the appropriate text
       newCard.addBackText(backText.value);
       currentCardIndex++; // increment the card index
@@ -131,10 +144,12 @@ buttonAdd.addEventListener("click", function () { // if the user clicks the "Add
 // function to show the cards below the create card section
 function displayCards() {
   let cardDisplay = document.querySelector("#displayCards");
-  while (cardDisplay.firstChild) { // remove the cards that are already there
+  while (cardDisplay.firstChild) {
+    // remove the cards that are already there
     cardDisplay.removeChild(cardDisplay.firstChild);
   }
-  for (let i = 0; i < myDeck.cards.length; i++) { // display all of the cards in the deck
+  for (let i = 0; i < myDeck.cards.length; i++) {
+    // display all of the cards in the deck
     let cardName = myDeck.cards[i].getFrontText();
     let backText = myDeck.cards[i].getBackText();
     let newCardDiv = document.createElement("div");
@@ -143,37 +158,65 @@ function displayCards() {
     cardDisplay.appendChild(newCardDiv);
     newCardDiv.appendChild(newCardDispF);
     newCardDiv.appendChild(newCardDisp);
-    newCardDisp.setAttribute("id", "leftBottom");
-    newCardDispF.setAttribute("id", "leftTop");
-    newCardDiv.setAttribute("id", "leftWrapper");
+    newCardDisp.setAttribute("class", "leftBottom");
+    newCardDispF.setAttribute("class", "leftTop");
+    //newCardDiv.setAttribute("id", "leftWrapper");
+    newCardDiv.setAttribute("class", "leftWrapper");
+
+    let str = "card" + i.toString();
+    newCardDisp.setAttribute("id", str);
+    let str2 = "front" + str;
+    newCardDispF.setAttribute("id", str2);
+    str = "#" + str;
+    let X = document.querySelector(str);
+    str2 = "#" + str2;
+    let Y = document.querySelector(str2);
+    cardDisp.push(X);
+    cardDisp.push(Y);
     newCardDisp.innerHTML = backText;
     newCardDispF.innerHTML = cardName;
-
-
-
-    
   }
+
+  cardDisp.forEach((item) => {
+    item.addEventListener("mouseover", function (evt) {
+      item.style.border = "solid #eeeeee .5px";
+    });
+    item.addEventListener("mouseout", function (evt) {
+      item.style.border = "";
+    });
+    item.addEventListener("click", function (evt) {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    });
+  });
 }
 
 // function to show the card we're currently studying
 function showCard() {
   let currCard = myDeck.getCurrCard();
-  if (currCard !== null) { // if we have another card to study...
+  if (currCard !== null) {
+    // if we have another card to study...
     let frontOfCard = document.querySelector("#frontOfCard"); // update the display to show it
     let backOfCard = document.querySelector("#backOfCard");
     frontOfCard.innerHTML = currCard.getFrontText();
     backOfCard.innerHTML = currCard.getBackText();
-  } else { // if we dont' ahve any more cards...
-    var result = confirm( // ask the user if they'd like to start from the begnning 
+  } else {
+    // if we dont' ahve any more cards...
+    var result = confirm(
+      // ask the user if they'd like to start from the begnning
       "You have studied all the cards in your deck. Click 'ok' to restart studying from the beginning and cancel to stay on the last card. "
     );
-    if (result) { // if they say 'ok'...
-      if (myDeck.cards.length != 0) { // if the deck isn't empty...
+    if (result) {
+      // if they say 'ok'...
+      if (myDeck.cards.length != 0) {
+        // if the deck isn't empty...
         myDeck.movePointerToBeginning(); // move them to the beginning of the deck
         showCard();
       }
-    } else { // otherwise...
-      if (myDeck.cards.length != 0) { // if the deck isn't empty...
+    } else {
+      // otherwise...
+      if (myDeck.cards.length != 0) {
+        // if the deck isn't empty...
         myDeck.movePointerBack(); // leave them at the last card
         showCard();
       }

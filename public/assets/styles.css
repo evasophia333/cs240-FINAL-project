@@ -6,8 +6,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
-
 .card {
   width: 190px;
   height: 10%;
@@ -97,16 +95,16 @@ body {
 }
 
 .card {
-  float: left; 
+  float: left;
   margin: 20px;
 }
 
-#leftWrapper {
+.leftWrapper {
   float: left;
   width: 32%;
   height: 650px;
 }
-#leftTop {
+.leftTop {
   width: 200px;
   height: 130px;
   background-color: darksalmon;
@@ -123,7 +121,7 @@ body {
   line-height: 130px;
 }
 
-#leftBottom {
+.leftBottom {
   width: 200px;
   height: 130px;
   background-color: rgb(182, 182, 182);
@@ -150,7 +148,7 @@ body {
 
 #studyContent {
   display: flex;
-  justify-content: flex-start; 
+  justify-content: flex-start;
 }
 
 #currentCard {
@@ -162,10 +160,54 @@ body {
   border-radius: 25px;
 }
 
-
 #study {
   font-size: 32px;
   background-color: white;
 }
+/* Popup container */
+.popup {
+  position: relative;
+  /*left: 50%;*/
+  display: inline-block;
+  /*cursor: pointer;*/
+}
 
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  color: seagreen;
+  border-style: solid;
+  border-width: 5px;
+  border-color: darksalmon;
 
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  /*left: 50%;*/
+  margin-left: -200px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  /*left: 50%;*/
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  animation: fadeIn 1s;
+}
