@@ -4,6 +4,7 @@ Global variable: deck!!!!! stores the current deck used
 let myDeck = null;
 let cardDisp = []; //used to hold cards in the card section for editing purposes
 let deckArray = []; //TODO
+let num = -1;//had to make a global variable to get delete event listener to work
 
 // NEW DECK EVENT LISTENER
 //Creates a new deck and adds it to a list for the user to keep track of their decks
@@ -196,50 +197,48 @@ function displayCards() {
       let textB = document.querySelector("#editCardBackText");
       let index = item.id;
       index = index.slice(1);
-      let num = parseInt(index);
+      num = parseInt(index);
       let strF = "#f" + num;
       let strB = "#b" + num;
       let front = document.querySelector(strF);
       let back = document.querySelector(strB);
       textF.value = front.innerHTML;
       textB.value = back.innerHTML;
-
-      let saveChan = document.querySelector("#saveChanges");
-      let deleteC = document.querySelector("#deleteCard");
-      let cancelB = document.querySelector("#cancelEdit");
-      cancelB.addEventListener("click", function (evt) {
-        popup.classList.remove("show");
-      });
-      saveChan.addEventListener("click", function (evt) {
-        if (
-          textF.value !== "" &&
-          textF.value !== null &&
-          textB.value !== "" &&
-          textB.value !== null
-        ) {
-          front.innerHTML = textF.value;
-          back.innerHTML = textB.value;
-          //console.log(textF.value);
-          myDeck.cards[num].addFrontText(textF.value);
-          myDeck.cards[num].addBackText(textB.value);
-
-          showCard();
-          popup.classList.remove("show");
-
-          //deck.cards[]
-        } else {
-          alert("Please add front and back text");
-        }
-      });
-      deleteC.addEventListener("click", function (evt) {
-        popup.classList.remove("show");
-        myDeck.removeCard(num);
-        showCard();
-        displayCards();
-      });
     });
   });
 }
+var popup = document.getElementById("myPopup");
+let saveChan = document.querySelector("#saveChanges");
+let deleteC = document.querySelector("#deleteCard");
+let cancelB = document.querySelector("#cancelEdit");
+cancelB.addEventListener("click", function (evt) {
+  popup.classList.remove("show");
+});
+saveChan.addEventListener("click", function (evt) {
+  if (
+    textF.value !== "" &&
+    textF.value !== null &&
+    textB.value !== "" &&
+    textB.value !== null
+  ) {
+    front.innerHTML = textF.value;
+    back.innerHTML = textB.value;
+    myDeck.cards[num].addFrontText(textF.value);
+    myDeck.cards[num].addBackText(textB.value);
+
+    showCard();
+    popup.classList.remove("show");
+  } else {
+    alert("Please add front and back text");
+  }
+});
+deleteC.addEventListener("click", function (evt) {
+  popup.classList.remove("show");
+  console.log(num);
+  myDeck.removeCard(num);
+  showCard();
+  displayCards();
+});
 
 // function to show the card we're currently studying
 function showCard() {
