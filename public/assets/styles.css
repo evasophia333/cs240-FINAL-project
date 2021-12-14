@@ -43,7 +43,6 @@ body {
   height: 260px;
   border-radius: 25px;
   padding: 10pt;
-  line-height: 260px;
 }
 
 .card__face--back {
@@ -54,7 +53,6 @@ body {
   height: 260px;
   border-radius: 25px;
   padding: 10pt;
-  line-height: 260px;
 }
 
 #newDeck,
@@ -118,7 +116,6 @@ body {
   float: left;
   overflow: scroll;
   margin-right: 10pt;
-  line-height: 130px;
 }
 
 .leftBottom {
@@ -134,7 +131,6 @@ body {
   font-size: 25px;
   float: left;
   overflow: scroll;
-  line-height: 130px;
 }
 
 #spaceDiv {
