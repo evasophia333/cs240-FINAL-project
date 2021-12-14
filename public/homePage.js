@@ -148,6 +148,10 @@ function displayCards() {
     newCardDiv.setAttribute("id", "leftWrapper");
     newCardDisp.innerHTML = backText;
     newCardDispF.innerHTML = cardName;
+
+
+
+    
   }
 }
 
