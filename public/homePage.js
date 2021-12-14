@@ -21,6 +21,7 @@ newDeck.addEventListener("click", () => {
       while (cardDisplay.firstChild) { // remove existing cards
         cardDisplay.removeChild(cardDisplay.firstChild);
       }
+      cardDisplay.innerHTML = "Your deck has no cards yet!";
       while (studyItem.firstChild) { // remove existing study display
         studyItem.removeChild(studyItem.firstChild);
       }
