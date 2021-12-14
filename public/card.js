@@ -2,11 +2,11 @@
  * Create a card and instantiates corresponding fields
  */
 class card {
-  constructor(num) {
+  constructor() {
     this.frontText = "";
     this.backText = "";
     this.difficulty = "";
-    this.cardID = num;
+    this.cardID = -1;
   }
   /**
    * adds to the front of the deck
@@ -14,6 +14,9 @@ class card {
    */
   addFrontText(textToAdd) {
     this.frontText = textToAdd;
+  }
+  setCardID(num) {
+    this.cardID = num;
   }
   /**
    * Adds text to the back of a card
@@ -92,4 +95,3 @@ class card {
     }
   }
 }
-

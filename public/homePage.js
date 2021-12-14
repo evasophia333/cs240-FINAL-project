@@ -109,7 +109,7 @@ cardVar.addEventListener("click", function () {
 /* 
 CARD EVENT LISTENERS!!!!!!!!
  Track current cards */
-let currentCardIndex = 0;
+//let currentCardIndex = 0;
 
 var buttonAdd = document.querySelector("#newCardButton");
 let frontText = document.querySelector("#frontText");
@@ -121,7 +121,7 @@ buttonAdd.addEventListener("click", function () {
     alert("unable to make cards without a deck! Please make a deck first."); // alert the user and ask them to make one
   } else {
     // if there is a deck...
-    let newCard = new card(currentCardIndex);
+    let newCard = new card();
     if (frontText.value == "" || backText.value == "") {
       // if either input box is empty...
       alert("Please add front and back text"); // ask the user to add text
@@ -129,7 +129,7 @@ buttonAdd.addEventListener("click", function () {
       // if there is text to put on the cards...
       newCard.addFrontText(frontText.value); // create a new card with the appropriate text
       newCard.addBackText(backText.value);
-      currentCardIndex++; // increment the card index
+      //currentCardIndex++; // increment the card index
       myDeck.addCardToDeck(newCard); // add it to the deck
       displayCards(); // show the card below the create card section
       if (myDeck.cards.length === 1) {
@@ -163,9 +163,9 @@ function displayCards() {
     //newCardDiv.setAttribute("id", "leftWrapper");
     newCardDiv.setAttribute("class", "leftWrapper");
 
-    let str = "card" + i.toString();
+    let str = "b" + i.toString();
     newCardDisp.setAttribute("id", str);
-    let str2 = "front" + str;
+    let str2 = "f" + i.toString();
     newCardDispF.setAttribute("id", str2);
     str = "#" + str;
     let X = document.querySelector(str);
@@ -187,6 +187,20 @@ function displayCards() {
     item.addEventListener("click", function (evt) {
       var popup = document.getElementById("myPopup");
       popup.classList.toggle("show");
+      let text = document.querySelector("#editCardText");
+      text.value = item.innerHTML;
+      let saveChan = document.querySelector("#saveChanges");
+      let deleteC = document.querySelector("#deleteCard");
+
+      saveChan.addEventListener("click", function (evt) {
+        if (text.value !== "" && text.value !== null) {
+          item.innerHTML = text.value;
+          let index = item.id;
+          console.log(index);
+          //deck.cards[]
+        }
+      });
+      deleteC.addEventListener("click", function (evt) {});
     });
   });
 }

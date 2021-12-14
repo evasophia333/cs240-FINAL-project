@@ -13,6 +13,7 @@ class Deck {
    * @param {Card object} Card
    */
   addCardToDeck(Card) {
+    Card.setCardID(this.cards.length - 1);
     this.cards.push(Card);
   }
 
@@ -40,21 +41,14 @@ class Deck {
    * @returns null if there are no more unseen cards to study
    */
 
-  getCurrCard() {
-    if (this.pointer < this.cards.length && this.pointer > -1) { //if we're within the bounds of the deck
-      let currCard = this.cards[this.pointer]; //return the card we're pointing at
-      return currCard;
-    } else {
-      return null; //at the end or beginning of the deck!!!!
-    }
-  }
-
-  movePointerBack() { //move the pointer back, therefore moving the user back in the deck
+  movePointerBack() {
+    //move the pointer back, therefore moving the user back in the deck
     if (!(this.pointer < 1)) {
       this.pointer--;
     }
   }
-  movePointerForward() { //move the pointer forward, therefore moving the user forward in the deck
+  movePointerForward() {
+    //move the pointer forward, therefore moving the user forward in the deck
     if (!(this.pointer > this.cards.length - 1)) {
       this.pointer++;
     }
@@ -64,10 +58,14 @@ class Deck {
    * Randomizes all cards in the deck between our current card and the end of the deck
    */
   shuffle() {
-    for (let i = this.pointer; i < this.cards.length; i++) { //for each card from our current card to the end of the deck...
+    for (let i = this.pointer; i < this.cards.length; i++) {
+      //for each card from our current card to the end of the deck...
       let max = this.cards.length - this.pointer;
       let j = Math.floor(Math.random() * max) + this.pointer; //randomly...
-      let card1 = this.cards[i]; //reasign
+      let card1 = this.cards[i]; //reassxign
+      card1.setCardID(j);
+      let card2 = this.cards[j];
+      card2.setCardID(i);
       this.cards[i] = this.cards[j];
       this.cards[j] = card1;
     }
@@ -81,11 +79,13 @@ class Deck {
     return this.name;
   }
 
-  movePointerToBeginning() { //moves the pointer to the beginning of the deck
+  movePointerToBeginning() {
+    //moves the pointer to the beginning of the deck
     this.pointer = 0;
   }
 
-  resetCards() { //resets deck to be empty
+  resetCards() {
+    //resets deck to be empty
     this.cards = [];
   }
 }
