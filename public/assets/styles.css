@@ -6,13 +6,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.scene {
-  width: 200px;
-  height: 260px;
-  border: 1px solid rgb(255, 255, 255); /*no border shown*/
-  margin: 40px 0;
-  perspective: 600px;
-}
+
 
 .card {
   width: 190px;
@@ -103,7 +97,7 @@ body {
 }
 
 .card {
-  float: left; /* can't get the cards to align left */
+  float: left; 
   margin: 20px;
 }
 
@@ -156,7 +150,7 @@ body {
 
 #studyContent {
   display: flex;
-  justify-content: flex-start; /*versus center*/
+  justify-content: flex-start; 
 }
 
 #currentCard {
@@ -168,15 +162,10 @@ body {
   border-radius: 25px;
 }
 
-#navButton {
-  margin: 100px 0px 100px 0px;
-}
 
 #study {
   font-size: 32px;
   background-color: white;
 }
 
-.header {
-  padding-top: 0pt;
-}
+

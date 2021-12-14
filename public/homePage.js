@@ -169,7 +169,7 @@ function showCard() {
       }
     } else { // otherwise...
       if (myDeck.cards.length != 0) { // if the deck isn't empty...
-         myDeck.movePointerBack(); // leave them at the last card
+        myDeck.movePointerBack(); // leave them at the last card
         showCard();
       }
     }
