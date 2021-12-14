@@ -2,7 +2,8 @@
 Global variable: deck!!!!! stores the current deck used
  */
 let myDeck = null;
-let cardDisp = [];
+let cardDisp = [];//used to hold cards in the card section for editing purposes
+let deckArray = [];//TODO
 
 // NEW DECK EVENT LISTENER
 //Creates a new deck and adds it to a list for the user to keep track of their decks
@@ -75,6 +76,7 @@ newDeck.addEventListener("click", () => {
 // handle the next button
 let nextButton = document.querySelector("#button02");
 nextButton.addEventListener("click", function () {
+  cardVar.classList.remove("is-flipped");
   myDeck.movePointerForward(); // point at the next card
   showCard();
 });
@@ -82,6 +84,7 @@ nextButton.addEventListener("click", function () {
 // handle the back button
 let backButton = document.querySelector("#button01");
 backButton.addEventListener("click", function () {
+  cardVar.classList.remove("is-flipped");
   myDeck.movePointerBack(); // point at the last card
   showCard();
 });
@@ -89,6 +92,7 @@ backButton.addEventListener("click", function () {
 // handle the reset button
 let resetButton = document.querySelector("#reset");
 resetButton.addEventListener("click", function () {
+  cardVar.classList.remove("is-flipped");
   myDeck.movePointerToBeginning(); // point at the first card
   showCard();
 });
@@ -96,6 +100,7 @@ resetButton.addEventListener("click", function () {
 // handle the shuffle button
 let shuffleButton = document.querySelector("#shuffle");
 shuffleButton.addEventListener("click", function () {
+  cardVar.classList.remove("is-flipped");
   myDeck.shuffle(); //shuffles remaining cards after pointer
   showCard();
 });
@@ -133,6 +138,7 @@ buttonAdd.addEventListener("click", function () {
       myDeck.addCardToDeck(newCard); // add it to the deck
       displayCards(); // show the card below the create card section
       if (myDeck.cards.length === 1) {
+        console.log(myDeck.pointer);
         showCard(); // update the study section
       }
     }
@@ -186,7 +192,7 @@ function displayCards() {
     });
     item.addEventListener("click", function (evt) {
       var popup = document.getElementById("myPopup");
-      popup.classList.toggle("show");
+      popup.classList.add("show");
       let textF = document.querySelector("#editCardFrontText");
       let textB = document.querySelector("#editCardBackText");
       let index = item.id;
@@ -211,11 +217,12 @@ function displayCards() {
         ) {
           front.innerHTML = textF.value;
           back.innerHTML = textB.value;
+          //console.log(textF.value);
           myDeck.cards[num].addFrontText(textF.value);
           myDeck.cards[num].addBackText(textB.value);
 
           showCard();
-          popup.classList.toggle("show");
+          popup.classList.remove("show");
 
           //deck.cards[]
         } else {
@@ -223,7 +230,7 @@ function displayCards() {
         }
       });
       deleteC.addEventListener("click", function (evt) {
-        popup.classList.toggle("show");
+        popup.classList.remove("show");
         myDeck.removeCard(num);
         showCard();
         displayCards();
@@ -234,20 +241,20 @@ function displayCards() {
 
 // function to show the card we're currently studying
 function showCard() {
-  let currCard = myDeck.getCurrCard();
-  if (currCard !== null) {
-    // if we have another card to study...
-
+  if (myDeck.cards.length === 0) {
     let frontOfCard = document.querySelector("#frontOfCard"); // update the display to show it
     let backOfCard = document.querySelector("#backOfCard");
-    frontOfCard.innerHTML = currCard.getFrontText();
-    backOfCard.innerHTML = currCard.getBackText();
+    frontOfCard.innerHTML = "**Add Front Text**";
+    backOfCard.innerHTML = "**Add Back Text**";
   } else {
-    if (myDeck.cards.length === 0) {
+    let currCard = myDeck.getCurrCard();
+    if (currCard !== null) {
+      // if we have another card to study...
+
       let frontOfCard = document.querySelector("#frontOfCard"); // update the display to show it
       let backOfCard = document.querySelector("#backOfCard");
-      frontOfCard.innerHTML = "**Add Front Text**";
-      backOfCard.innerHTML = "**Add Back Text**";
+      frontOfCard.innerHTML = currCard.getFrontText();
+      backOfCard.innerHTML = currCard.getBackText();
     } else {
       // if we dont' ahve any more cards...
       var result = confirm(

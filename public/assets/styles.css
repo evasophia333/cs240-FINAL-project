@@ -176,7 +176,7 @@ body {
 .popup .popuptext {
   visibility: hidden;
   width: 300px;
-  height: 300px;
+  height: 350px;
   background-color: white;
   color: seagreen;
   border-style: solid;

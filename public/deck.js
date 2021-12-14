@@ -8,9 +8,6 @@ class Deck {
     this.pointer = 0; //tracks our current position in the deck
   }
   removeCard(num) {
-    if (this.pointer === this.cards.length - 1 && num === this.pointer) {
-      this.pointer = this.pointer - 1;
-    }
     if (num < this.pointer) {
       this.pointer = this.pointer - 1;
     }
@@ -19,6 +16,12 @@ class Deck {
     }
     for (let i = num; i < this.cards.length; i++) {
       this.cards[i].setCardID(i);
+    }
+    if (this.pointer > this.cards.length - 1) {
+      this.pointer--;
+    }
+    if (this.pointer < 0) {
+      this.pointer++;
     }
   }
   /**
