@@ -187,20 +187,47 @@ function displayCards() {
     item.addEventListener("click", function (evt) {
       var popup = document.getElementById("myPopup");
       popup.classList.toggle("show");
-      let text = document.querySelector("#editCardText");
-      text.value = item.innerHTML;
+      let textF = document.querySelector("#editCardFrontText");
+      let textB = document.querySelector("#editCardBackText");
+      let index = item.id;
+      index = index.slice(1);
+      let num = parseInt(index);
+      let strF = "#f" + num;
+      let strB = "#b" + num;
+      let front = document.querySelector(strF);
+      let back = document.querySelector(strB);
+      textF.value = front.innerHTML;
+      textB.value = back.innerHTML;
+
       let saveChan = document.querySelector("#saveChanges");
       let deleteC = document.querySelector("#deleteCard");
 
       saveChan.addEventListener("click", function (evt) {
-        if (text.value !== "" && text.value !== null) {
-          item.innerHTML = text.value;
-          let index = item.id;
-          console.log(index);
+        if (
+          textF.value !== "" &&
+          textF.value !== null &&
+          textB.value !== "" &&
+          textB.value !== null
+        ) {
+          front.innerHTML = textF.value;
+          back.innerHTML = textB.value;
+          myDeck.cards[num].addFrontText(textF.value);
+          myDeck.cards[num].addBackText(textB.value);
+
+          showCard();
+          popup.classList.toggle("show");
+
           //deck.cards[]
+        } else {
+          alert("Please add front and back text");
         }
       });
-      deleteC.addEventListener("click", function (evt) {});
+      deleteC.addEventListener("click", function (evt) {
+        popup.classList.toggle("show");
+        myDeck.removeCard(num);
+        showCard();
+        displayCards();
+      });
     });
   });
 }
@@ -210,29 +237,37 @@ function showCard() {
   let currCard = myDeck.getCurrCard();
   if (currCard !== null) {
     // if we have another card to study...
+
     let frontOfCard = document.querySelector("#frontOfCard"); // update the display to show it
     let backOfCard = document.querySelector("#backOfCard");
     frontOfCard.innerHTML = currCard.getFrontText();
     backOfCard.innerHTML = currCard.getBackText();
   } else {
-    // if we dont' ahve any more cards...
-    var result = confirm(
-      // ask the user if they'd like to start from the begnning
-      "You have studied all the cards in your deck. Click 'ok' to restart studying from the beginning and cancel to stay on the last card. "
-    );
-    if (result) {
-      // if they say 'ok'...
-      if (myDeck.cards.length != 0) {
-        // if the deck isn't empty...
-        myDeck.movePointerToBeginning(); // move them to the beginning of the deck
-        showCard();
-      }
+    if (myDeck.cards.length === 0) {
+      let frontOfCard = document.querySelector("#frontOfCard"); // update the display to show it
+      let backOfCard = document.querySelector("#backOfCard");
+      frontOfCard.innerHTML = "**Add Front Text**";
+      backOfCard.innerHTML = "**Add Back Text**";
     } else {
-      // otherwise...
-      if (myDeck.cards.length != 0) {
-        // if the deck isn't empty...
-        myDeck.movePointerBack(); // leave them at the last card
-        showCard();
+      // if we dont' ahve any more cards...
+      var result = confirm(
+        // ask the user if they'd like to start from the begnning
+        "You have studied all the cards in your deck. Click 'ok' to restart studying from the beginning and cancel to stay on the last card. "
+      );
+      if (result) {
+        // if they say 'ok'...
+        if (myDeck.cards.length != 0) {
+          // if the deck isn't empty...
+          myDeck.movePointerToBeginning(); // move them to the beginning of the deck
+          showCard();
+        }
+      } else {
+        // otherwise...
+        if (myDeck.cards.length != 0) {
+          // if the deck isn't empty...
+          myDeck.movePointerBack(); // leave them at the last card
+          showCard();
+        }
       }
     }
   }

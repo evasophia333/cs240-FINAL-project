@@ -7,7 +7,20 @@ class Deck {
     this.cards = []; //stores the cards in the deck
     this.pointer = 0; //tracks our current position in the deck
   }
-
+  removeCard(num) {
+    if (this.pointer === this.cards.length - 1 && num === this.pointer) {
+      this.pointer = this.pointer - 1;
+    }
+    if (num < this.pointer) {
+      this.pointer = this.pointer - 1;
+    }
+    if (num >= 0 && num < this.cards.length) {
+      this.cards.splice(num, 1);
+    }
+    for (let i = num; i < this.cards.length; i++) {
+      this.cards[i].setCardID(i);
+    }
+  }
   /**
    * Takes a given card and adds it to the deck.
    * @param {Card object} Card
@@ -41,6 +54,15 @@ class Deck {
    * @returns null if there are no more unseen cards to study
    */
 
+  getCurrCard() {
+    if (this.pointer < this.cards.length && this.pointer > -1) {
+      //if we're within the bounds of the deck
+      let currCard = this.cards[this.pointer]; //return the card we're pointing at
+      return currCard;
+    } else {
+      return null; //at the end or beginning of the deck!!!!
+    }
+  }
   movePointerBack() {
     //move the pointer back, therefore moving the user back in the deck
     if (!(this.pointer < 1)) {
