@@ -154,6 +154,10 @@ function displayCards() {
     // remove the cards that are already there
     cardDisplay.removeChild(cardDisplay.firstChild);
   }
+  if (myDeck.cards.length == 0) {
+    let disp = document.querySelector("#displayCards");
+    disp.innerHTML = "Your deck has no cards yet!";
+  }
   for (let i = 0; i < myDeck.cards.length; i++) {
     // display all of the cards in the deck
     let cardName = myDeck.cards[i].getFrontText();
@@ -211,27 +215,19 @@ var popup = document.getElementById("myPopup");
 let saveChan = document.querySelector("#saveChanges");
 let deleteC = document.querySelector("#deleteCard");
 let cancelB = document.querySelector("#cancelEdit");
+let textF = document.querySelector("#editCardFrontText");
+let textB = document.querySelector("#editCardBackText");
+let strF = "#f" + num;
+let strB = "#b" + num;
+let front = document.querySelector(strF);
+let back = document.querySelector(strB);
+
+
+
 cancelB.addEventListener("click", function (evt) {
   popup.classList.remove("show");
 });
-saveChan.addEventListener("click", function (evt) {
-  if (
-    textF.value !== "" &&
-    textF.value !== null &&
-    textB.value !== "" &&
-    textB.value !== null
-  ) {
-    front.innerHTML = textF.value;
-    back.innerHTML = textB.value;
-    myDeck.cards[num].addFrontText(textF.value);
-    myDeck.cards[num].addBackText(textB.value);
 
-    showCard();
-    popup.classList.remove("show");
-  } else {
-    alert("Please add front and back text");
-  }
-});
 deleteC.addEventListener("click", function (evt) {
   popup.classList.remove("show");
   console.log(num);
@@ -239,7 +235,14 @@ deleteC.addEventListener("click", function (evt) {
   showCard();
   displayCards();
 });
+saveChan.addEventListener("click", function (evt) {
+  myDeck.cards[num].addFrontText(textF.value);
+  myDeck.cards[num].addBackText(textB.value);
 
+  showCard();
+  displayCards();
+  popup.classList.remove("show");
+});
 // function to show the card we're currently studying
 function showCard() {
   if (myDeck.cards.length === 0) {
